@@ -551,6 +551,22 @@ function scenarioActivity(id,label,headline,story,choices){ // choices [{t, ok, 
 /* 5. FLIP CARDS */
 function flips(cards){return '<div class="flips reveal" data-d="3">'+cards.map(function(c){return '<button class="flip" onclick="this.classList.toggle(\'on\')" aria-label="Flip card"><div class="flip-in"><div class="face front"><div class="fq">'+c.q+'</div><div class="ft">Tap to flip</div></div><div class="face back"><div>'+c.a+'</div></div></div></button>';}).join('')+'</div>';}
 
+/* 5b. FLIP CARDS that gate Next — every card must be flipped */
+function flipGate(id,cards){
+  var html='<div id="'+id+'">'+flips(cards).replace(/onclick="this\.classList\.toggle\(\'on\'\)"/g,'')+
+    '<div class="act-status reveal" data-d="3" id="'+id+'-st">Flip all '+cards.length+' cards to continue (0 of '+cards.length+')</div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return; var seen=state.activity[id+'-f']||{};
+    var els=root.querySelectorAll('.flip'), st=document.getElementById(id+'-st');
+    function paint(){var n=Object.keys(seen).length;
+      if(n>=cards.length){st.className='act-status ok';st.textContent='All '+cards.length+' cards flipped.';state.activity[id]=true;unlockNext();}
+      else{st.className='act-status';st.textContent='Flip all '+cards.length+' cards to continue ('+n+' of '+cards.length+')';}}
+    els.forEach(function(e,i){e.onclick=function(){e.classList.toggle('on');seen[i]=true;state.activity[id+'-f']=seen;paint();};});
+    paint();
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
 /* 6. HOTSPOT HOUSE — find all energy sources */
 var HS=[
   {id:'net',x:70,y:92,name:'Network supply (pole or pillar)',src:true,info:'The grid. Upstream isolation of the consumer mains is at the pole or pillar — <b>Authorised Person only</b>, and every pillar needs a safety observer with an LVR kit.'},
@@ -824,17 +840,17 @@ var WELCOME={crumb:'Welcome',hideNav:true,build:function(){
 
 /* ---------- SHARED SECTIONS ---------- */
 var SHARED=[
-S('Why it matters',function(){return {html:''+
-  kick('01','Why it matters')+
-  '<h2 class="head reveal" data-d="1">You can’t see it, smell it or feel it</h2>'+
-  '<p class="lede reveal" data-d="2">Asbestos fibres are microscopic. Once breathed in they lodge in the lungs for good — and the diseases they cause show up <b>20 to 50 years later</b>. There is no safe level of exposure, and the damage can’t be undone.</p>'+
-  flips([
+S('Why it matters',function(){var a=flipGate('dis',[
     {q:'Mesothelioma',a:'An aggressive cancer of the lining of the lungs or abdomen — almost only caused by asbestos. Median survival is around 12–21 months after diagnosis.'},
     {q:'Lung cancer',a:'Asbestos exposure raises the risk — and smoking multiplies it.'},
     {q:'Asbestosis',a:'Scarring of the lungs. Breathlessness that gets worse over time. No cure.'},
-    {q:'Pleural disease',a:'Thickening and plaques on the lung lining — often a sign of past exposure.'}
-  ])+
-  '<div class="shockline reveal" data-d="4"><div class="q">The tradies getting sick today were exposed 30 years ago.</div><div class="sub">What you do on site this week decides your health in 2056 — and your apprentice’s.</div></div>'};}),
+    {q:'Pleural disease',a:'Thickening and plaques on the lung lining — often a sign of past exposure.'}]);
+  return {html:''+
+  kick('01','Why it matters')+
+  '<h2 class="head reveal" data-d="1">You can’t see it, smell it or feel it</h2>'+
+  '<p class="lede reveal" data-d="2">Asbestos fibres are microscopic. Once breathed in they lodge in the lungs for good — and the diseases they cause show up <b>20 to 50 years later</b>. There is no safe level of exposure, and the damage can’t be undone.</p>'+
+  a.html+
+  '<div class="shockline reveal" data-d="4"><div class="q">The tradies getting sick today were exposed 30 years ago.</div><div class="sub">What you do on site this week decides your health in 2056 — and your apprentice’s.</div></div>',wire:a.wire,gate:a.gate};}),
 
 S('Spotting it',function(){return {html:''+
   kick('02','Spotting asbestos')+
