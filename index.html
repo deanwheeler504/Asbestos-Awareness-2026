@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asbestos Awareness 2026 — Fallon Solutions Safety Toolbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  /* Fallon 2026 brand: red #EE2E24, blue #1E94D2, navy #09557C (sampled from the 2026 logo files) */
+  :root{
+    --red:#EE2E24; --red-dark:#C4211A; --red-soft:#FDEAE9;
+    --blue:#1E94D2; --blue-dark:#09557C; --blue-soft:#E6F3FB;
+    --ink:#16181D; --slate:#62666E; --paper:#FFFFFF; --mist:#F3F5F7;
+    --line:#E2E5EA; --ok:#15803D; --okbg:#DCFCE7; --bad:#DC2626; --badbg:#FEE2E2;
+    --amber:#B45309; --amberbg:#FEF3C7;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+    --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+    --skew:-24deg;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{font-family:'Barlow',system-ui,sans-serif;color:var(--ink);background:var(--mist);
+    -webkit-font-smoothing:antialiased;line-height:1.5}
+  button{font-family:inherit;color:inherit}
+  .app{max-width:880px;margin:0 auto;min-height:100vh;background:var(--paper);
+    display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:12px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;
+    background:rgba(255,255,255,.94);backdrop-filter:blur(8px)}
+  .topbar img{height:34px;display:block}
+  .crumb{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:500;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .progress{height:5px;background:var(--line);position:relative;overflow:hidden}
+  .progress > span{position:absolute;left:0;top:0;height:100%;width:0;
+    background:linear-gradient(90deg,var(--red),var(--red) 70%,var(--blue));transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+  .stage{flex:1;position:relative}
+  .screen{display:none;padding:34px 30px 30px}
+  .screen.active{display:block}
+  .reveal{opacity:0}
+  .screen.active .reveal{opacity:1;animation:rise .5s cubic-bezier(.2,.7,.2,1) backwards}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .reveal[data-d="1"]{animation-delay:.07s!important}
+  .reveal[data-d="2"]{animation-delay:.14s!important}
+  .reveal[data-d="3"]{animation-delay:.21s!important}
+  .reveal[data-d="4"]{animation-delay:.28s!important}
+  .reveal[data-d="5"]{animation-delay:.35s!important}
+  .reveal[data-d="6"]{animation-delay:.42s!important}
+  @media (prefers-reduced-motion:reduce){.screen.active .reveal{animation:none}}
+
+  /* kicker: skewed red + blue ribbons, echoing the 2026 logo */
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:14px}
+  .tag{display:inline-block;background:var(--red);color:#fff;padding:5px 12px 4px;font-size:12px;line-height:1;
+    transform:skewX(var(--skew));border-radius:2px 5px 2px 5px}
+  .tag > span{display:inline-block;transform:skewX(calc(-1*var(--skew)))}
+  .tag.blue{background:var(--blue)}
+  .new{display:inline-block;background:var(--blue);color:#fff;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:11px;
+    letter-spacing:.1em;padding:3px 9px 2px;border-radius:999px;vertical-align:3px;margin-left:6px;text-transform:uppercase}
+
+  h1.title{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:clamp(28px,5.4vw,46px);line-height:1.02;
+    text-transform:uppercase;margin-bottom:14px}
+  h2.head{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:clamp(23px,4.4vw,34px);line-height:1.06;
+    text-transform:uppercase;margin-bottom:14px}
+  .lede{font-size:clamp(16px,2.2vw,18px);color:#30333a;max-width:62ch;margin-bottom:8px}
+  p+p{margin-top:12px}
+  strong,b{font-weight:700}
+
+  .shockline{margin:8px 0 20px;padding:24px 24px 22px;border-radius:14px;
+    background:linear-gradient(135deg,var(--ink),#272b33);color:#fff;position:relative;overflow:hidden}
+  .shockline:before{content:"";position:absolute;inset:0;opacity:.12;
+    background:repeating-linear-gradient(45deg,#000 0 14px,var(--red) 14px 28px)}
+  .shockline .q{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:clamp(21px,4vw,30px);line-height:1.08;
+    text-transform:uppercase;position:relative}
+  .shockline .sub{position:relative;margin-top:8px;color:#d9dce1;font-size:15.5px}
+
+  .grid{display:grid;gap:14px;margin-top:16px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:640px){.g2,.g3{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:14px;padding:18px 18px;background:var(--paper);box-shadow:var(--shadow)}
+  .card h3{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:.01em;
+    margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .card ul{list-style:none;margin-top:2px}
+  .card li{position:relative;padding-left:20px;font-size:15px;margin-top:8px;color:#383b42}
+  .card li:before{content:"";position:absolute;left:2px;top:8px;width:8px;height:8px;background:var(--red);
+    transform:skewX(var(--skew))}
+  .card.blue li:before{background:var(--blue)}
+  .card.newcard{border-color:#BFE0F3;background:linear-gradient(180deg,var(--blue-soft),#fff 60%)}
+
+  .chip{width:38px;height:38px;min-width:38px;border-radius:10px;display:grid;place-items:center;
+    background:var(--red-soft);color:var(--red)}
+  .chip.b{background:var(--blue-soft);color:var(--blue-dark)}
+  .chip svg{width:21px;height:21px}
+  .ii{display:inline-flex;width:18px;height:18px;vertical-align:-3px;margin-right:8px;flex:none}
+  .ii svg{width:18px;height:18px}
+
+  .note{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:14.5px;background:var(--amberbg);
+    color:#5a3d05;border:1px solid #FBD38D}
+  .note.red{background:var(--red-soft);color:var(--red-dark);border-color:#F6C2BE}
+  .note.blue{background:var(--blue-soft);color:var(--blue-dark);border-color:#BFE0F3}
+
+  .checklist{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .check{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);
+    border-radius:12px;background:var(--mist)}
+  .check .box{width:24px;height:24px;min-width:24px;border-radius:7px;background:var(--ok);display:grid;place-items:center;margin-top:1px}
+  .check .box svg{width:15px;height:15px;stroke:#fff;stroke-width:3.4;fill:none}
+  .check .t{font-size:15.5px;color:#2a2c31}
+  .check.danger .box{background:var(--red)}
+  .check.info .box{background:var(--blue)}
+
+  /* ---------- interactive: activity frame ---------- */
+  .activity{margin-top:18px;border:2px dashed #BFE0F3;border-radius:16px;padding:18px;background:#FBFDFF}
+  .act-h{display:flex;align-items:center;gap:10px;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:10px}
+  .act-h .pill{background:var(--blue);color:#fff;border-radius:999px;padding:3px 10px 2px;font-size:11px}
+  .act-status{margin-top:12px;font-size:14.5px;min-height:22px}
+  .act-status.ok{color:var(--ok);font-weight:600}
+  .act-status.no{color:var(--bad);font-weight:600}
+  @keyframes shake{10%,90%{transform:translateX(-1px)}20%,80%{transform:translateX(3px)}30%,50%,70%{transform:translateX(-5px)}40%,60%{transform:translateX(5px)}}
+  .shake{animation:shake .45s}
+
+  /* order activity */
+  .slots{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+  .slot{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:11px;border:1.5px dashed var(--line);
+    min-height:50px;font-size:15px;color:var(--slate);background:#fff}
+  .slot .n{width:28px;height:28px;min-width:28px;border-radius:8px;background:var(--mist);display:grid;place-items:center;
+    font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;color:var(--slate)}
+  .slot.filled{border-style:solid;border-color:var(--ok);background:var(--okbg);color:#14532d}
+  .slot.filled .n{background:var(--ok);color:#fff}
+  .slot .lbl b{display:block;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;text-transform:uppercase;font-size:14px;letter-spacing:.03em}
+  .pool{display:flex;flex-wrap:wrap;gap:8px}
+  .pchip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;cursor:pointer;
+    font-weight:600;font-size:15px;transition:.15s}
+  .pchip:hover{border-color:var(--blue)}
+  .pchip.used{display:none}
+
+  /* hotspot activity */
+  .hs-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#EAF5FC,#fff 70%)}
+  .hs-wrap svg.scene{display:block;width:100%;height:auto}
+  .hs{cursor:pointer}
+  .hs .ring{fill:none;stroke:var(--red);stroke-width:3;opacity:.9;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+  .hs.found .ring{stroke:var(--ok);animation:none}
+  .hs .dot{fill:var(--red)}
+  .hs.found .dot{fill:var(--ok)}
+  .hs.decoy.found .dot{fill:var(--slate)}
+  .hs.decoy.found .ring{stroke:var(--slate)}
+  .hs:focus{outline:none}
+  .hs:focus .ring{stroke-width:5}
+  @keyframes pulse{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.5);opacity:0}}
+  .hs-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .hs-legend span{font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--mist);color:var(--slate)}
+  .hs-legend span.on{background:var(--okbg);color:#14532d}
+  .hs-info{margin-top:12px;border-radius:12px;padding:13px 15px;background:#fff;border:1px solid var(--line);font-size:14.5px;min-height:48px}
+  .hs-info b{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+
+  /* verdict cards */
+  .vcard{border:1px solid var(--line);border-radius:16px;padding:20px;background:#fff;box-shadow:var(--shadow);text-align:center}
+  .vcard .vc-n{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-size:12px;letter-spacing:.14em;color:var(--slate);text-transform:uppercase;margin-bottom:8px}
+  .vcard .vc-t{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:clamp(19px,3.4vw,23px);line-height:1.2;margin-bottom:16px}
+  .vbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .vbtn{display:flex;align-items:center;gap:8px;border:2px solid var(--line);background:#fff;border-radius:12px;padding:12px 18px;
+    font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;min-width:150px;justify-content:center}
+  .vbtn.y{border-color:#86EFAC;color:var(--ok)}
+  .vbtn.n{border-color:#FCA5A5;color:var(--bad)}
+  .vbtn:hover{transform:translateY(-1px)}
+  .vbtn svg{width:18px;height:18px}
+  .vfb{margin-top:14px;text-align:left;border-radius:10px;padding:13px 15px;font-size:14.5px;display:none}
+  .vfb.show{display:block;animation:rise .3s ease}
+  .vfb.ok{background:var(--okbg);color:#14532d;border:1px solid #86EFAC}
+  .vfb.no{background:var(--badbg);color:#7f1d1d;border:1px solid #FCA5A5}
+  .vtally{display:flex;gap:6px;justify-content:center;margin-top:14px}
+  .vtally i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+  .vtally i.ok{background:var(--ok)} .vtally i.no{background:var(--bad)} .vtally i.cur{background:var(--blue)}
+
+  /* meter simulator */
+  .meter-row{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start}
+  @media(max-width:640px){.meter-row{grid-template-columns:1fr}}
+  .meter{background:#2b2f36;border-radius:22px;padding:14px;box-shadow:inset 0 -6px 0 rgba(0,0,0,.25);max-width:200px;margin:0 auto;border:5px solid #F2C230}
+  .lcd{background:#C9D8B6;border-radius:8px;padding:12px 10px;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;color:#1f2a14;text-align:right;
+    font-size:40px;line-height:1;letter-spacing:.02em;box-shadow:inset 0 2px 6px rgba(0,0,0,.25)}
+  .lcd small{font-size:16px;margin-left:4px}
+  .lcd-sub{font-size:11px;letter-spacing:.12em;text-align:left;color:#43512f;margin-top:6px}
+  .meter-dial{margin:14px auto 4px;width:84px;height:84px;border-radius:50%;background:#1d2026;border:4px solid #444a54;position:relative}
+  .meter-dial:after{content:"";position:absolute;left:50%;top:8px;width:6px;height:30px;background:#F2C230;border-radius:3px;transform:translateX(-50%)}
+  .meter-cat{color:#fff;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-size:11px;text-align:center;letter-spacing:.1em;opacity:.8}
+  .steps-pick{display:flex;flex-direction:column;gap:8px}
+  .spick{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:12px 14px;cursor:pointer;font-size:15px;display:flex;gap:10px;align-items:flex-start}
+  .spick:hover{border-color:var(--blue)}
+  .spick .k{width:26px;height:26px;min-width:26px;border-radius:7px;background:var(--mist);display:grid;place-items:center;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;color:var(--slate)}
+  .spick.done{border-color:var(--ok);background:var(--okbg);cursor:default}
+  .spick.done .k{background:var(--ok);color:#fff}
+
+  /* multi-select */
+  .msel{display:flex;flex-direction:column;gap:8px}
+  .mopt{display:flex;gap:12px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:12px 14px;cursor:pointer;font-size:15px}
+  .mopt .bx{width:22px;height:22px;min-width:22px;border-radius:6px;border:2px solid #c2c7cf;display:grid;place-items:center;margin-top:1px}
+  .mopt.on{border-color:var(--blue);background:var(--blue-soft)}
+  .mopt.on .bx{background:var(--blue);border-color:var(--blue)}
+  .mopt .bx svg{width:13px;height:13px;stroke:#fff;stroke-width:3.4;fill:none;opacity:0}
+  .mopt.on .bx svg{opacity:1}
+  .mopt.right{border-color:var(--ok);background:var(--okbg)}
+  .mopt.wrong{border-color:var(--bad);background:var(--badbg)}
+  .mopt .why{display:none;font-size:13.5px;margin-top:4px;color:#3a3d44}
+  .mopt.right .why,.mopt.wrong .why,.mopt.miss .why{display:block}
+  .mopt.miss{border-color:var(--amber);background:var(--amberbg)}
+
+  /* flip cards */
+  .flips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  @media(max-width:640px){.flips{grid-template-columns:1fr}.flip,.flip-in{min-height:120px}}
+  .flip{perspective:900px;min-height:170px;cursor:pointer;border:none;background:none;padding:0;text-align:left}
+  .flip-in{position:relative;width:100%;height:100%;min-height:170px;transition:transform .55s;transform-style:preserve-3d}
+  .flip.on .flip-in{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;border-radius:14px;padding:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;justify-content:center}
+  .front{background:var(--ink);color:#fff}
+  .front .fq{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:19px;line-height:1.15;text-transform:uppercase}
+  .front .ft{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9aa1ab;margin-top:12px;font-family:'Oswald'}
+  .back{background:var(--blue-soft);color:var(--blue-dark);border:1px solid #BFE0F3;transform:rotateY(180deg);font-size:14.5px}
+  .back b{color:var(--ink)}
+
+  /* scenario */
+  .scn{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .scn-top{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;padding:16px 18px}
+  .scn-top .st{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  .scn-top .sh{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;margin-top:2px}
+  .scn-body{padding:16px 18px}
+  .scn-body p{font-size:15.5px}
+  .scn-opts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+
+  /* table */
+  .tablewrap{margin-top:16px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table{border-collapse:collapse;width:100%;font-size:14.5px}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--ink);color:#fff;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:500;text-transform:uppercase;font-size:12.5px;letter-spacing:.05em}
+  td:first-child{font-weight:700;width:38%}
+  tr:last-child td{border-bottom:none}
+
+  /* footer nav */
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 24px;border-top:1px solid var(--line);
+    position:sticky;bottom:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px)}
+  .btn{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;
+    border-radius:10px;padding:13px 24px;transition:transform .12s ease, box-shadow .2s ease, background .2s ease;display:inline-block;
+    text-decoration:none;text-align:center}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 6px 16px rgba(238,46,36,.30)}
+  .btn-primary:hover{background:var(--red-dark)}
+  .btn-blue{background:var(--blue);color:#fff;box-shadow:0 6px 16px rgba(30,148,210,.28)}
+  .btn-blue:hover{background:var(--blue-dark)}
+  .btn-ghost{background:transparent;color:var(--slate);padding-left:6px;padding-right:6px}
+  .btn-ghost:hover{color:var(--ink)}
+  .btn:disabled{opacity:.38;cursor:not-allowed;box-shadow:none}
+  .navmid{font-size:12.5px;color:var(--slate);text-align:center;flex:1}
+  .navmid .lock{display:inline-flex;align-items:center;gap:6px;color:var(--blue-dark);font-weight:600}
+
+  /* welcome */
+  .welcome{text-align:center;padding:40px 28px 34px}
+  .welcome .logo{height:64px;margin:0 auto 22px;display:block}
+  .welcome .eyebrow{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:500;letter-spacing:.22em;font-size:13px;text-transform:uppercase;color:var(--blue-dark);margin-bottom:10px}
+  .welcome h1{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:clamp(30px,6vw,52px);line-height:1;text-transform:uppercase;margin-bottom:12px}
+  .welcome .yr{color:var(--red)}
+  .welcome .desc{max-width:50ch;margin:0 auto 22px;color:#40434a;font-size:16.5px}
+  .meta-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+  .meta-row .m{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--slate);font-weight:600}
+  .meta-row .m svg{width:17px;height:17px;color:var(--red)}
+  .form{max-width:440px;margin:0 auto;text-align:left}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+  .field input,.field select{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:'Barlow';font-size:16px;color:var(--ink);background:#fff;transition:border .2s}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--blue)}
+  .field .err{border-color:var(--bad)}
+  .roles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  @media(max-width:420px){.roles{grid-template-columns:1fr}}
+  .role{border:1.5px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff;cursor:pointer;text-align:left;font-size:14px}
+  .role b{display:block;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:14.5px;text-transform:uppercase;letter-spacing:.02em}
+  .role span{color:var(--slate);font-size:12.5px}
+  .role.on{border-color:var(--red);background:var(--red-soft)}
+  .role.on.nonel{border-color:var(--blue);background:var(--blue-soft)}
+  .ferr{color:var(--bad);font-size:13.5px;min-height:20px;margin-top:4px}
+  .start-btn{width:100%;margin-top:6px;padding:15px}
+  .trackbadge{display:inline-flex;gap:8px;align-items:center;margin-top:14px;font-size:13px;color:var(--slate)}
+
+  /* quiz */
+  .qhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .qcount{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+  .qbar{flex:1;height:6px;background:var(--line);border-radius:3px;margin-left:16px;overflow:hidden}
+  .qbar > span{display:block;height:100%;background:var(--red);transition:width .4s}
+  .qtext{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:clamp(19px,3.4vw,25px);line-height:1.2;margin-bottom:18px}
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;gap:13px;align-items:flex-start;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;background:#fff;
+    transition:border .15s,background .15s;font-size:15.5px;text-align:left;width:100%}
+  .opt:hover{border-color:#b9bec6}
+  .opt .key{width:26px;height:26px;min-width:26px;border-radius:7px;background:var(--mist);display:grid;place-items:center;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:14px;color:var(--slate)}
+  .opt.sel{border-color:var(--blue);background:var(--blue-soft)}
+  .opt.sel .key{background:var(--blue);color:#fff}
+  .opt.correct{border-color:var(--ok);background:var(--okbg)}
+  .opt.correct .key{background:var(--ok);color:#fff}
+  .opt.wrong{border-color:var(--bad);background:var(--badbg)}
+  .opt.wrong .key{background:var(--bad);color:#fff}
+  .opt.locked{cursor:default;pointer-events:none}
+  .feedback{margin-top:14px;padding:13px 15px;border-radius:10px;font-size:14.5px;display:none}
+  .feedback.show{display:block;animation:rise .3s ease}
+  .feedback.ok{background:var(--okbg);color:#14532d;border:1px solid #86EFAC}
+  .feedback.no{background:var(--badbg);color:#7f1d1d;border:1px solid #FCA5A5}
+
+  /* result + cert */
+  .result{text-align:center;padding:38px 28px 28px}
+  .scorering{width:150px;height:150px;margin:0 auto 20px;position:relative}
+  .scorering svg{transform:rotate(-90deg)}
+  .scorering .pct{position:absolute;inset:0;display:grid;place-items:center;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:38px}
+  .result h2{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:32px;text-transform:uppercase;margin-bottom:8px}
+  .result .pass{color:var(--ok)} .result .fail{color:var(--red)}
+  .result .rsub{color:#40434a;max-width:48ch;margin:0 auto 22px;font-size:16px}
+  .review{text-align:left;margin:22px 0;display:flex;flex-direction:column;gap:10px}
+  .rev{border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+  .rev .rq{font-weight:600;margin-bottom:4px}
+  .rev .ra{color:var(--ok)} .rev .ra.bad{color:var(--bad)}
+  .cert{border:2px solid var(--ink);border-radius:16px;padding:28px 26px 56px;margin:6px 0 4px;background:#fff;position:relative;overflow:hidden;text-align:left}
+  .cert:before{content:"";position:absolute;bottom:0;right:-50px;width:240px;height:22px;background:var(--red);transform:skewX(var(--skew))}
+  .cert:after{content:"";position:absolute;bottom:26px;right:-40px;width:170px;height:12px;background:var(--blue);transform:skewX(var(--skew))}
+  .cert .clogo{height:48px;margin-bottom:16px;position:relative}
+  .cert .ctitle{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:2px}
+  .cert .cmod{color:var(--red);font-weight:700;font-size:15px;margin-bottom:20px}
+  .cert .crow{display:flex;flex-wrap:wrap;gap:18px 36px}
+  .cert .ci .k{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-bottom:2px}
+  .cert .ci .v{font-size:17px;font-weight:600}
+  .cert .stamp{display:inline-block;margin-top:20px;border:3px solid var(--ok);color:var(--ok);font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:15px;
+    letter-spacing:.08em;text-transform:uppercase;padding:6px 13px;border-radius:8px;transform:rotate(-7deg);opacity:.9;background:#fff}
+  .decl{display:flex;gap:12px;align-items:flex-start;text-align:left;max-width:520px;margin:20px auto 0;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;font-size:14.5px;background:#fff}
+  .decl.on{border-color:var(--ok);background:var(--okbg)}
+  .decl .bx{width:22px;height:22px;min-width:22px;border-radius:6px;border:2px solid #c2c7cf;display:grid;place-items:center;margin-top:1px}
+  .decl.on .bx{background:var(--ok);border-color:var(--ok)}
+  .decl .bx svg{width:13px;height:13px;stroke:#fff;stroke-width:3.4;fill:none;opacity:0}
+  .decl.on .bx svg{opacity:1}
+  .sendbox{max-width:520px;margin:18px auto 0;padding:22px 22px 20px;border-radius:18px;background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;text-align:center;box-shadow:0 14px 34px rgba(238,46,36,.34)}
+  .sendbox .se{display:inline-block;font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.22);padding:5px 13px;border-radius:999px;margin-bottom:10px}
+  .sendbox .stt{font-family:'Oswald','Arial Narrow',system-ui,sans-serif;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.2}
+  .sendbox .ssub{font-size:14px;color:rgba(255,255,255,.9);margin:6px auto 14px;max-width:40ch}
+  .sendbox .btn{background:#fff;color:var(--red-dark);box-shadow:none;width:100%}
+  .sendbox .btn[aria-disabled="true"]{opacity:.6}
+  .sentok{display:none;margin:14px auto 0;max-width:520px;font-size:14px;color:var(--slate)}
+  .minor-links{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .minor-links button{background:none;border:none;padding:0;font-size:13px;color:var(--slate);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .minor-links span{color:var(--line);font-size:13px}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:.3s;pointer-events:none;z-index:50}
+  .toast.on{opacity:1}
+
+  @media print{
+    .topbar,.progress,.nav,.btn-row,.minor-links,.sendbox,.decl,.sentok{display:none!important}
+    .app{box-shadow:none} body{background:#fff}
+  }
+  @media(max-width:600px){
+    .screen{padding:26px 16px 22px}
+    .nav{padding:12px 16px}
+    .btn{padding:12px 16px;font-size:14px}
+    .topbar{padding:10px 16px}
+    .topbar img{height:30px}
+    .activity{padding:14px}
+    .navmid{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <img id="brandLogo" alt="Fallon Solutions">
+    <div class="crumb" id="crumb">Safety Toolbox</div>
+  </div>
+  <div class="progress"><span id="pbar"></span></div>
+  <div class="stage" id="stage"></div>
+  <div class="nav" id="nav" style="display:none">
+    <button class="btn btn-ghost" id="backBtn">&larr; Back</button>
+    <div class="navmid" id="navmid"></div>
+    <button class="btn btn-primary" id="nextBtn">Next &rarr;</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+var LOGO="data:image/png;base64,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";
+/* ============================================================
+   CONFIG — Dean can change these
+   ============================================================ */
+var SUBMIT_TO   = "dean.wheeler@fallonsolutions.com.au"; // where completions are emailed
+var TOPIC       = "Asbestos Awareness 2026";       // used in the email subject + certificate
+var PASS_MARK   = 80;                                     // % needed to pass
+var VERSION     = "v1.0 · Nov 2026 · SWMS – Asbestos (review 07/01/2026) · WHSQ Asbestos Awareness Week 2026";
+
+/* ---------- icons ---------- */
+function ic(p){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+var I={
+  bolt:ic('<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="currentColor" stroke="none"/>'),
+  lock:ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
+  tag:ic('<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9Z"/><circle cx="7.5" cy="7.5" r="1.5"/>'),
+  meter:ic('<rect x="6" y="2" width="12" height="20" rx="3"/><rect x="8.5" y="5" width="7" height="5" rx="1"/><circle cx="12" cy="15.5" r="2.5"/>'),
+  sun:ic('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+  battery:ic('<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M22 11v2M7 10v4M11 10v4"/>'),
+  shield:ic('<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/>'),
+  check:ic('<path d="M4 12l5 5L20 6"/>'),
+  cross:ic('<path d="M7 7l10 10M17 7L7 17"/>'),
+  list:ic('<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>'),
+  clock:ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  alert:ic('<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/>'),
+  users:ic('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>'),
+  pole:ic('<path d="M12 2v20M6 6h12M8 10h8M9 22h6"/>'),
+  play:ic('<path d="M6 4l14 8-14 8V4Z"/>'),
+  touch:ic('<path d="M9 11V5a2 2 0 0 1 4 0v6M13 10a2 2 0 0 1 4 0v2M17 11a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3l-3-5a2 2 0 0 1 3-2l2 2"/>'),
+  mail:ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
+  drop:ic('<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/>'),
+  flame:ic('<path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3 1-6 1-8.5Z"/>'),
+  gear:ic('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>')
+};
+function ii(svg){return '<span class="ii">'+svg+'</span>';}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on');},2200);}
+function kick(n,label,blue){return '<div class="kicker reveal"><span class="tag'+(blue?' blue':'')+'"><span>'+n+'</span></span> '+label+'</div>';}
+function chk(d,t,kind){var cls=kind==='danger'?' danger':kind==='info'?' info':'';var icon=kind==='danger'?I.cross:I.check;return '<div class="check'+cls+' reveal" data-d="'+d+'"><span class="box">'+icon+'</span><span class="t">'+t+'</span></div>';}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+var state={i:0,track:null,user:{name:'',email:'',role:'',dept:''},gate:{},answers:[],activity:{}};
+var SCREENS=[];   // built per track
+
+/* ============================================================
+   ACTIVITY BUILDERS (each returns html + a wire function)
+   ============================================================ */
+
+/* 1. ORDER — tap items in the right order */
+function orderActivity(id,title,items){ // items: [{t:'Consult',d:'desc'}] in correct order
+  var pool=shuffle(items.map(function(x,i){return {t:x.t,d:x.d,i:i};}));
+  var html='<div class="activity reveal" data-d="3" id="'+id+'">'+
+    '<div class="act-h"><span class="pill">Activity</span>'+title+'</div>'+
+    '<div class="slots">'+items.map(function(x,i){return '<div class="slot" data-s="'+i+'"><span class="n">'+(i+1)+'</span><span class="lbl">Tap the next step below</span></div>';}).join('')+'</div>'+
+    '<div class="pool">'+pool.map(function(p){return '<button class="pchip" data-i="'+p.i+'">'+p.t+'</button>';}).join('')+'</div>'+
+    '<div class="act-status" id="'+id+'-st"></div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return;
+    var next=0, misses=0;
+    if(state.activity[id]){ // already done — show completed
+      next=items.length; root.querySelectorAll('.slot').forEach(function(s,i){s.classList.add('filled');s.querySelector('.lbl').innerHTML='<b>'+items[i].t+'</b>'+items[i].d;});
+      root.querySelectorAll('.pchip').forEach(function(c){c.classList.add('used');});
+      document.getElementById(id+'-st').className='act-status ok';document.getElementById(id+'-st').textContent='Done — sequence locked in.';return;}
+    root.querySelectorAll('.pchip').forEach(function(c){
+      c.onclick=function(){
+        var i=parseInt(c.getAttribute('data-i'),10); var st=document.getElementById(id+'-st');
+        if(i===next){
+          var s=root.querySelector('.slot[data-s="'+i+'"]'); s.classList.add('filled');
+          s.querySelector('.lbl').innerHTML='<b>'+items[i].t+'</b>'+items[i].d; c.classList.add('used'); next++;
+          st.className='act-status'; st.textContent='';
+          if(next===items.length){st.className='act-status ok';st.textContent=misses===0?'Perfect — first time, every step.':'Sequence complete.';state.activity[id]=true;unlockNext();}
+        } else { misses++; c.classList.add('shake'); setTimeout(function(){c.classList.remove('shake');},460);
+          st.className='act-status no'; st.textContent='Not yet — what has to happen before "'+items[i].t+'"?'; }
+      };
+    });
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* 2. VERDICT CARDS — secure / not secure */
+function verdictActivity(id,title,yesLbl,noLbl,cards){ // cards: [{t, ok:true/false, why}]
+  var html='<div class="activity reveal" data-d="3" id="'+id+'"><div class="act-h"><span class="pill">Activity</span>'+title+'</div><div id="'+id+'-c"></div></div>';
+  function wire(){
+    var host=document.getElementById(id+'-c'); if(!host) return;
+    var k=0, res=[];
+    function draw(){
+      if(k>=cards.length){
+        var good=res.filter(Boolean).length;
+        host.innerHTML='<div class="vcard"><div class="vc-n">All '+cards.length+' done</div><div class="vc-t">You called '+good+' of '+cards.length+' correctly</div>'+
+          '<div class="vtally">'+res.map(function(r){return '<i class="'+(r?'ok':'no')+'"></i>';}).join('')+'</div>'+
+          '<div style="margin-top:14px"><button class="btn btn-ghost" id="'+id+'-again">Run it again</button></div></div>';
+        document.getElementById(id+'-again').onclick=function(){k=0;res=[];draw();};
+        state.activity[id]=true; unlockNext(); return;
+      }
+      var c=cards[k];
+      host.innerHTML='<div class="vcard"><div class="vc-n">Situation '+(k+1)+' of '+cards.length+'</div><div class="vc-t">'+c.t+'</div>'+
+        '<div class="vbtns"><button class="vbtn y" data-v="1">'+I.check+yesLbl+'</button><button class="vbtn n" data-v="0">'+I.cross+noLbl+'</button></div>'+
+        '<div class="vfb" id="'+id+'-fb"></div>'+
+        '<div class="vtally">'+cards.map(function(_,j){return '<i class="'+(j<k?(res[j]?'ok':'no'):(j===k?'cur':''))+'"></i>';}).join('')+'</div></div>';
+      host.querySelectorAll('.vbtn').forEach(function(b){
+        b.onclick=function(){
+          var v=b.getAttribute('data-v')==='1'; var right=(v===c.ok); res[k]=right;
+          host.querySelectorAll('.vbtn').forEach(function(x){x.disabled=true;x.style.opacity=(x===b?1:.35);});
+          var fb=document.getElementById(id+'-fb'); fb.className='vfb show '+(right?'ok':'no');
+          fb.innerHTML='<b>'+(right?'Correct — ':'Not quite — ')+(c.ok?yesLbl:noLbl)+'.</b> '+c.why+
+            '<div style="margin-top:10px;text-align:right"><button class="btn btn-blue" style="padding:9px 16px" id="'+id+'-n">'+(k===cards.length-1?'Finish':'Next situation')+' &rarr;</button></div>';
+          document.getElementById(id+'-n').onclick=function(){k++;draw();};
+        };
+      });
+    }
+    if(state.activity[id]){k=cards.length;res=cards.map(function(){return true;});
+      host.innerHTML='<div class="vcard"><div class="vc-n">Completed</div><div class="vc-t">Activity done</div><button class="btn btn-ghost" id="'+id+'-again">Run it again</button></div>';
+      document.getElementById(id+'-again').onclick=function(){k=0;res=[];draw();}; return;}
+    draw();
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* 3. MULTI-SELECT — choose all that apply, then check */
+function multiActivity(id,title,prompt,opts){ // opts: [{t, ok, why}]
+  var html='<div class="activity reveal" data-d="3" id="'+id+'"><div class="act-h"><span class="pill">Activity</span>'+title+'</div>'+
+    '<p style="font-size:15px;margin-bottom:10px"><b>'+prompt+'</b> Tap all that apply.</p>'+
+    '<div class="msel">'+opts.map(function(o,i){return '<button class="mopt" data-i="'+i+'"><span class="bx">'+I.check+'</span><span><span>'+o.t+'</span><span class="why">'+o.why+'</span></span></button>';}).join('')+'</div>'+
+    '<div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn btn-blue" id="'+id+'-go" style="padding:10px 18px">Check my answer</button><span class="act-status" id="'+id+'-st" style="margin:0"></span></div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return; var locked=false;
+    var els=root.querySelectorAll('.mopt');
+    els.forEach(function(e){e.onclick=function(){if(locked)return;e.classList.toggle('on');};});
+    document.getElementById(id+'-go').onclick=function(){
+      var allRight=true;
+      els.forEach(function(e,i){var on=e.classList.contains('on');var o=opts[i];e.classList.remove('right','wrong','miss');
+        if(on&&o.ok)e.classList.add('right'); else if(on&&!o.ok){e.classList.add('wrong');allRight=false;} else if(!on&&o.ok){e.classList.add('miss');allRight=false;}
+        else if(!on&&!o.ok){e.classList.add('right');}
+      });
+      locked=true; var st=document.getElementById(id+'-st');
+      st.className='act-status '+(allRight?'ok':'no'); st.textContent=allRight?'Spot on.':'Read the notes — amber = one you missed, red = shouldn’t be there.';
+      var g=document.getElementById(id+'-go'); g.textContent='Try again'; g.onclick=function(){locked=false;els.forEach(function(e){e.classList.remove('on','right','wrong','miss');});st.textContent='';g.textContent='Check my answer';g.onclick=null;wire();};
+      state.activity[id]=true; unlockNext();
+    };
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* 4. SCENARIO — branching choice with consequence */
+function scenarioActivity(id,label,headline,story,choices){ // choices [{t, ok, out}]
+  var html='<div class="scn reveal" data-d="2" id="'+id+'" style="margin-top:16px"><div class="scn-top"><div class="st">'+label+'</div><div class="sh">'+headline+'</div></div>'+
+    '<div class="scn-body"><p>'+story+'</p><div class="scn-opts">'+choices.map(function(c,i){return '<button class="opt" data-i="'+i+'"><span class="key">'+'ABCD'[i]+'</span><span>'+c.t+'</span></button>';}).join('')+'</div>'+
+    '<div class="feedback" id="'+id+'-fb"></div></div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return;
+    var els=root.querySelectorAll('.opt');
+    els.forEach(function(e){e.onclick=function(){
+      var c=choices[parseInt(e.getAttribute('data-i'),10)];
+      els.forEach(function(x){x.classList.remove('correct','wrong');});
+      e.classList.add(c.ok?'correct':'wrong');
+      var fb=document.getElementById(id+'-fb'); fb.className='feedback show '+(c.ok?'ok':'no'); fb.innerHTML=(c.ok?'<b>Good call.</b> ':'<b>Think again.</b> ')+c.out;
+      if(c.ok){els.forEach(function(x){x.classList.add('locked');}); state.activity[id]=true; unlockNext();}
+    };});
+    if(state.activity[id]){var k=choices.findIndex(function(c){return c.ok;}); els[k].click();}
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* 5. FLIP CARDS */
+function flips(cards){return '<div class="flips reveal" data-d="3">'+cards.map(function(c){return '<button class="flip" onclick="this.classList.toggle(\'on\')" aria-label="Flip card"><div class="flip-in"><div class="face front"><div class="fq">'+c.q+'</div><div class="ft">Tap to flip</div></div><div class="face back"><div>'+c.a+'</div></div></div></button>';}).join('')+'</div>';}
+
+/* 6. HOTSPOT HOUSE — find all energy sources */
+var HS=[
+  {id:'net',x:70,y:92,name:'Network supply (pole or pillar)',src:true,info:'The grid. Upstream isolation of the consumer mains is at the pole or pillar — <b>Authorised Person only</b>, and every pillar needs a safety observer with an LVR kit.'},
+  {id:'ms',x:258,y:262,name:'Main switch — general',src:true,info:'Isolates the general installation from the grid. On its own it does <b>not</b> isolate solar, battery or a generator.'},
+  {id:'cl',x:300,y:262,name:'Main switch — controlled load',src:true,info:'Off-peak / controlled load (e.g. hot water) has its <b>own</b> main switch. Miss it and the HWS circuit can come alive on the tariff timer.'},
+  {id:'pv',x:420,y:62,name:'Solar PV array',src:true,info:'PV DC cables between the panels and the DC isolator stay <b>energised whenever there is daylight</b>. The DC isolator only isolates downstream of itself.'},
+  {id:'inv',x:470,y:225,name:'Inverter (AC & DC isolators)',src:true,info:'Lock and tag both the <b>AC and DC isolators</b> and follow the manufacturer’s shutdown procedure. Allow stored energy (capacitors) to discharge per the manual.'},
+  {id:'bess',x:540,y:270,name:'Battery (BESS)',src:true,info:'A BESS can back-feed sub-circuits <b>even with the grid off and the main switch open</b>. Shut it down using the manufacturer’s procedure — then prove dead.'},
+  {id:'gen',x:620,y:290,name:'Generator inlet / changeover',src:true,info:'Portable or fixed generators connected through a changeover switch or inlet are an alternate supply. Isolate and lock at the changeover/inlet.'},
+  {id:'ls',x:170,y:205,name:'Light switch',src:false,info:'<b>Not</b> a means of isolation. Light switches and control devices (e-stops, PLC outputs) must never be the sole isolation point.'}
+];
+function houseActivity(id){
+  var spots=HS.map(function(h){return '<g class="hs'+(h.src?'':' decoy')+'" tabindex="0" role="button" aria-label="'+esc(h.name)+'" data-id="'+h.id+'" transform="translate('+h.x+','+h.y+')"><circle class="ring" r="15"/><circle class="dot" r="8"/></g>';}).join('');
+  var svg='<svg class="scene" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" aria-label="House with grid, solar, battery and generator supplies">'+
+    '<rect x="0" y="318" width="700" height="42" fill="#DDE7D0"/>'+
+    // pole + service line
+    '<rect x="66" y="70" width="8" height="250" fill="#8B6B4A"/><rect x="40" y="82" width="60" height="6" fill="#6b5236"/>'+
+    '<path d="M70 86 C 150 120, 200 140, 238 168" stroke="#30343b" stroke-width="2.5" fill="none"/>'+
+    // pillar alt
+    '<rect x="100" y="282" width="34" height="38" rx="4" fill="#2E7D32"/><text x="117" y="276" font-size="10" text-anchor="middle" fill="#2E7D32" font-family="Oswald, Arial Narrow, sans-serif">PILLAR</text>'+
+    // house
+    '<polygon points="150,170 400,60 650,170" fill="#C96A4A"/>'+
+    '<rect x="160" y="170" width="480" height="150" fill="#F4EDE4" stroke="#d9cbb8"/>'+
+    // panels on roof
+    '<g transform="translate(360,78) skewX(-12)"><rect width="150" height="58" fill="#14396B" stroke="#9fc3e8" stroke-width="2"/>'+
+    '<path d="M37 0v58M75 0v58M112 0v58M0 29h150" stroke="#9fc3e8" stroke-width="1.5"/></g>'+
+    // door/window
+    '<rect x="350" y="240" width="44" height="80" fill="#8a5a3a"/><rect x="190" y="200" width="60" height="44" fill="#BFE0F3" stroke="#fff" stroke-width="3"/>'+
+    // light switch
+    '<rect x="163" y="196" width="14" height="20" rx="2" fill="#fff" stroke="#aaa"/>'+
+    // switchboard
+    '<rect x="236" y="206" width="86" height="86" rx="4" fill="#E9ECEF" stroke="#6b7280" stroke-width="2"/><text x="279" y="222" font-size="10" text-anchor="middle" fill="#374151" font-family="Oswald, Arial Narrow, sans-serif">MSB</text>'+
+    '<rect x="250" y="246" width="16" height="30" rx="2" fill="#EE2E24"/><rect x="292" y="246" width="16" height="30" rx="2" fill="#F59E0B"/>'+
+    // inverter
+    '<rect x="446" y="196" width="50" height="62" rx="5" fill="#fff" stroke="#6b7280" stroke-width="2"/><text x="471" y="212" font-size="9" text-anchor="middle" fill="#374151" font-family="Oswald, Arial Narrow, sans-serif">INVERTER</text>'+
+    '<path d="M440 120 L 452 196" stroke="#30343b" stroke-width="2" stroke-dasharray="4 3" fill="none"/>'+
+    // battery
+    '<rect x="516" y="236" width="48" height="76" rx="6" fill="#fff" stroke="#1E94D2" stroke-width="2.5"/><text x="540" y="252" font-size="9" text-anchor="middle" fill="#09557C" font-family="Oswald, Arial Narrow, sans-serif">BATTERY</text>'+
+    '<rect x="528" y="262" width="24" height="10" rx="2" fill="#86EFAC"/><rect x="528" y="276" width="24" height="10" rx="2" fill="#86EFAC"/>'+
+    // generator outside
+    '<rect x="596" y="282" width="56" height="36" rx="5" fill="#F2C230" stroke="#9a7b10" stroke-width="2"/><text x="624" y="304" font-size="9" text-anchor="middle" fill="#3b2f05" font-family="Oswald, Arial Narrow, sans-serif">GEN</text>'+
+    spots+'</svg>';
+  var total=HS.filter(function(h){return h.src;}).length;
+  var html='<div class="activity reveal" data-d="3" id="'+id+'"><div class="act-h"><span class="pill">Activity</span>Find every source of supply</div>'+
+    '<p style="font-size:15px;margin-bottom:10px">Tap the pulsing points. Find all <b>'+total+'</b> sources of supply / isolation points for this house — watch out, not every point is one.</p>'+
+    '<div class="hs-wrap">'+svg+'</div>'+
+    '<div class="hs-info" id="'+id+'-info">Tap a point to inspect it.</div>'+
+    '<div class="hs-legend" id="'+id+'-leg">'+HS.filter(function(h){return h.src;}).map(function(h){return '<span data-id="'+h.id+'">'+h.name.split(' (')[0].split(' —')[0]+(h.id==='cl'?' (CL)':'')+'</span>';}).join('')+'</div>'+
+    '<div class="act-status" id="'+id+'-st">0 of '+total+' found</div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return;
+    var found=state.activity[id+'-f']||{};
+    function paint(){
+      var n=0; HS.forEach(function(h){var g=root.querySelector('.hs[data-id="'+h.id+'"]'); if(found[h.id]){g.classList.add('found'); if(h.src)n++; var l=root.querySelector('.hs-legend span[data-id="'+h.id+'"]'); if(l)l.classList.add('on');}});
+      var st=document.getElementById(id+'-st');
+      if(n>=total){st.className='act-status ok';st.textContent='All '+total+' found. Every one must be isolated, locked, tagged — then proved dead.';state.activity[id]=true;unlockNext();}
+      else {st.className='act-status';st.textContent=n+' of '+total+' found';}
+    }
+    root.querySelectorAll('.hs').forEach(function(g){
+      function hit(){var h=HS.filter(function(x){return x.id===g.getAttribute('data-id');})[0]; found[h.id]=true; state.activity[id+'-f']=found;
+        document.getElementById(id+'-info').innerHTML='<b>'+(h.src?'✔ ':'✖ ')+h.name+'</b><br>'+h.info; paint();}
+      g.addEventListener('click',hit); g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();hit();}});
+    });
+    paint();
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* 7. METER — prove de-energised sequence */
+var MSTEPS=[
+  {t:'Test the voltage tester on a known live source',read:'230',u:'V',note:'Tester proven working before you rely on it.'},
+  {t:'Test between all conductors and a known earth',read:'0.0',u:'V',note:'A–E, N–E: no voltage to earth.'},
+  {t:'Test between all conductors',read:'0.0',u:'V',note:'A–N (and A–A on 3-phase): no voltage between conductors.'},
+  {t:'Re-test the tester on the known live source',read:'230',u:'V',note:'Tester still working — so the zero readings can be trusted.'}
+];
+function meterActivity(id){
+  var order=shuffle(MSTEPS.map(function(s,i){return i;}));
+  var html='<div class="activity reveal" data-d="3" id="'+id+'"><div class="act-h"><span class="pill">Activity</span>Prove de-energised — in the right order</div>'+
+    '<div class="meter-row"><div><div class="meter"><div class="lcd" id="'+id+'-lcd">- - -<small>V</small></div><div class="lcd-sub" id="'+id+'-sub">CAT IV · VOLTS AC</div><div class="meter-dial"></div><div class="meter-cat">CAT IV 600V</div></div></div>'+
+    '<div><div class="steps-pick">'+order.map(function(i){return '<button class="spick" data-i="'+i+'"><span class="k">?</span><span>'+MSTEPS[i].t+'</span></button>';}).join('')+'</div>'+
+    '<div class="act-status" id="'+id+'-st">Tap the step you do <b>first</b>.</div></div></div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return; var next=0;
+    var lcd=document.getElementById(id+'-lcd'), st=document.getElementById(id+'-st');
+    function show(i){lcd.innerHTML=MSTEPS[i].read+'<small>'+MSTEPS[i].u+'</small>';}
+    root.querySelectorAll('.spick').forEach(function(b){
+      b.onclick=function(){
+        if(b.classList.contains('done')) return;
+        var i=parseInt(b.getAttribute('data-i'),10);
+        if(i===next){ b.classList.add('done'); b.querySelector('.k').textContent=(i+1); show(i); next++;
+          st.className='act-status ok'; st.innerHTML=MSTEPS[i].note;
+          if(next===MSTEPS.length){ st.innerHTML='Sequence complete. <b>Live-before, dead, dead, live-after</b> — if the final check had read 0 V, your meter failed and every reading is worthless. Replace it and start again.'; state.activity[id]=true; unlockNext(); }
+        } else { b.classList.add('shake'); setTimeout(function(){b.classList.remove('shake');},460); st.className='act-status no'; st.textContent=next===0?'First prove the tester works.':'Not that one yet.'; }
+      };
+    });
+    if(state.activity[id]){ MSTEPS.forEach(function(_,i){var b=root.querySelector('.spick[data-i="'+i+'"]'); b.classList.add('done'); b.querySelector('.k').textContent=i+1;}); show(3); st.className='act-status ok'; st.textContent='Done.'; }
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* ============================================================
+   SCREEN DEFINITIONS
+   ============================================================ */
+function S(crumb,builder){return {crumb:crumb,build:builder};}
+
+/* 8. TORCH — spot the hazards in the dark */
+var TH=[
+  {id:'dog',x:120,y:300,r:34,name:'Dog bowl & chain',info:'Signs of a dog. Rattle the gate, call out and wait. Unrestrained dog — or the customer isn’t home to secure it? <b>Don’t enter.</b>'},
+  {id:'water',x:300,y:318,r:40,name:'Water pooling under the meter box',info:'Water + electricity. Don’t stand in it. Treat the board and enclosure as live until you’ve tested.'},
+  {id:'line',x:520,y:120,r:40,name:'Branch on the service line',info:'Storm damage. Treat lines as live, stay well clear and report it to Energex (13 19 62).'},
+  {id:'hose',x:420,y:330,r:34,name:'Hose across the path',info:'Trip hazard in the dark. Light your path before you carry gear in.'},
+  {id:'scorch',x:300,y:228,r:30,name:'Scorch marks on the meter box',info:'Signs of overheating or arcing. Don’t open it bare-handed — PPE on, proximity test, then voltmeter to an independent earth.'}
+];
+function torchActivity(id){
+  var total=TH.length;
+  var scene='<g>'+
+    '<rect width="700" height="380" fill="#9BB6C9"/><rect y="345" width="700" height="35" fill="#7E9A63"/>'+
+    '<rect x="60" y="250" width="10" height="100" fill="#6b5236"/><rect x="560" y="70" width="8" height="280" fill="#6b5236"/><rect x="535" y="80" width="58" height="5" fill="#4a3826"/>'+
+    '<path d="M564 84 C 450 130, 320 150, 230 175" stroke="#222" stroke-width="2.5" fill="none"/>'+
+    '<path d="M480 95 l70 40 M500 110 l-18 22 M520 118 l10 26" stroke="#3b2a18" stroke-width="6" stroke-linecap="round"/>'+
+    '<polygon points="160,180 360,90 600,180" fill="#A65B3F"/><rect x="170" y="180" width="420" height="165" fill="#E9E0D3"/>'+
+    '<rect x="260" y="200" width="80" height="80" rx="4" fill="#cfd5db" stroke="#555" stroke-width="2"/>'+
+    '<path d="M285 222 q10 -12 20 0 q10 12 20 0" stroke="#2b2b2b" stroke-width="7" fill="none" opacity=".75"/>'+
+    '<ellipse cx="300" cy="330" rx="60" ry="10" fill="#5C8FB3" opacity=".8"/>'+
+    '<rect x="440" y="250" width="50" height="95" fill="#7a5034"/><rect x="200" y="210" width="40" height="34" fill="#4d6a82"/>'+
+    '<path d="M360 345 C 390 320, 430 345, 470 325 S 530 340, 560 330" stroke="#2E7D32" stroke-width="5" fill="none"/>'+
+    '<ellipse cx="112" cy="318" rx="20" ry="7" fill="#C0392B"/><path d="M128 316 q 30 -10 40 6 q 10 14 30 8" stroke="#888" stroke-width="3" fill="none" stroke-dasharray="5 3"/>'+
+  '</g>';
+  var marks=TH.map(function(h){return '<g class="tmark" data-id="'+h.id+'" style="display:none"><circle cx="'+h.x+'" cy="'+h.y+'" r="'+h.r+'" fill="none" stroke="#15803D" stroke-width="4"/></g>';}).join('');
+  var svg='<svg class="scene" id="'+id+'-svg" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="touch-action:none;cursor:crosshair">'+
+    '<defs><radialGradient id="'+id+'-g"><stop offset="0" stop-color="#000" stop-opacity="1"/><stop offset=".65" stop-color="#000" stop-opacity="1"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'+
+    '<mask id="'+id+'-m"><rect width="700" height="380" fill="#fff"/><circle id="'+id+'-c" cx="350" cy="190" r="85" fill="url(#'+id+'-g)"/></mask></defs>'+
+    scene+marks+'<rect width="700" height="380" fill="#05070c" opacity=".93" mask="url(#'+id+'-m)"/></svg>';
+  var html='<div class="activity reveal" data-d="3" id="'+id+'"><div class="act-h"><span class="pill">Activity</span>You’ve just pulled up — it’s 11 pm</div>'+
+    '<p style="font-size:15px;margin-bottom:10px">Drag (or tap) to move your torch. <b>Tap each hazard</b> when you find it — there are <b>'+total+'</b>.</p>'+
+    '<div class="hs-wrap" style="background:#05070c">'+svg+'</div>'+
+    '<div class="hs-info" id="'+id+'-info">Sweep the torch across the property.</div>'+
+    '<div class="act-status" id="'+id+'-st">0 of '+total+' found</div></div>';
+  function wire(){
+    var svgEl=document.getElementById(id+'-svg'); if(!svgEl) return;
+    var c=document.getElementById(id+'-c'); var found=state.activity[id+'-f']||{};
+    function pt(e){var r=svgEl.getBoundingClientRect();var t=e.touches?e.touches[0]:e;return {x:(t.clientX-r.left)/r.width*700,y:(t.clientY-r.top)/r.height*380};}
+    function move(p){c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);}
+    function paint(){var n=0;TH.forEach(function(h){if(found[h.id]){n++;svgEl.querySelector('.tmark[data-id="'+h.id+'"]').style.display='';}});
+      var st=document.getElementById(id+'-st');
+      if(n>=total){st.className='act-status ok';st.textContent='All '+total+' found. This is the 30-second look you do before you get out of the van.';state.activity[id]=true;unlockNext();}
+      else{st.className='act-status';st.textContent=n+' of '+total+' found';}}
+    function hit(p){move(p);var best=null,bd=1e9;TH.forEach(function(h){var d=Math.hypot(h.x-p.x,h.y-p.y);if(d<h.r+22&&d<bd){bd=d;best=h;}});
+      var info=document.getElementById(id+'-info');
+      if(best){found[best.id]=true;state.activity[id+'-f']=found;info.innerHTML='<b>✔ '+best.name+'</b><br>'+best.info;paint();}
+      else info.textContent='Nothing there — keep looking.';}
+    svgEl.addEventListener('mousemove',function(e){move(pt(e));});
+    svgEl.addEventListener('touchmove',function(e){e.preventDefault();move(pt(e));},{passive:false});
+    svgEl.addEventListener('click',function(e){hit(pt(e));});
+    if(state.activity[id]){TH.forEach(function(h){found[h.id]=true;});}
+    paint();
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* ---------- ASBESTOS HOTSPOT HOUSE ---------- */
+var AHS=[
+  {id:'roof',x:430,y:108,name:'Corrugated roof sheeting (“Super Six”)',src:true,info:'Corrugated asbestos-cement roofing was common up to the late 1980s. Never walk on it (it’s brittle and you can fall through), never water-blast or wire-brush it.'},
+  {id:'eave',x:196,y:178,name:'Eaves linings',src:true,info:'Most eaves on homes built before 1990 are flat asbestos-cement sheet (fibro). A cable, pipe or bracket through the eaves = drilling asbestos — follow the SWMS.'},
+  {id:'wall',x:590,y:250,name:'Fibro wall cladding & cover strips',src:true,info:'Flat sheet cladding (Fibrolite, Hardiflex before 1981, Durabestos) with timber or fibro cover strips. Older fibro often has a dimpled pattern on the back.'},
+  {id:'meter',x:268,y:252,name:'Meter box & switchboard panel',src:true,info:'Boards before 1990 very likely contain asbestos: Zelemite, Lebah, Ausbestos, Miscolite panels (dark brown/black, tar smell), fibro-lined timber meter boxes and dust inside the box. Old rewireable fuse holders can have <b>friable</b> asbestos wadding.'},
+  {id:'putty',x:212,y:222,name:'Window putty',src:true,info:'Easy to miss — WorkSafe lists window putty as one of the less obvious places asbestos hides in pre-1990 homes.'},
+  {id:'down',x:648,y:240,name:'Gutters, downpipes & water / sewer pipes',src:true,info:'Asbestos-cement guttering, downpipes, water pipes, drainage pipes and flues. Plumbers: <b>never jet</b> or power-cut AC pipe.'},
+  {id:'fence',x:92,y:300,name:'Fibro fence',src:true,info:'Corrugated fibro fencing is common between older properties — weathered and broken sheets can release fibres.'},
+  {id:'bath',x:470,y:226,name:'Bathroom & laundry wall linings',src:true,info:'Wet-area linings behind tiles were often asbestos-cement sheet — including in houses that have been “renovated” over the top.'},
+  {id:'vinyl',x:470,y:300,name:'Vinyl floor tiles / sheet vinyl',src:true,info:'Vinyl tiles can contain bonded asbestos. The <b>backing of old sheet vinyl and lino is friable</b> — Class A licensed removal only. Don’t lift it.'},
+  {id:'door',x:372,y:278,name:'Timber front door',src:false,info:'Solid timber — not a likely asbestos product. (Still look at what’s around it: the wall sheeting next to it may be fibro.)'},
+  {id:'tank',x:40,y:200,name:'New poly rainwater tank',src:false,info:'Modern polyethylene — no asbestos. Not everything on an old property is suspect; the age of the <b>product</b> matters.'}
+];
+function asbHouse(id){
+  var spots=AHS.map(function(h){return '<g class="hs'+(h.src?'':' decoy')+'" tabindex="0" role="button" aria-label="'+esc(h.name)+'" data-id="'+h.id+'" transform="translate('+h.x+','+h.y+')"><circle class="ring" r="15"/><circle class="dot" r="8"/></g>';}).join('');
+  var corr=''; for(var x=176;x<=636;x+=10){corr+='M'+x+' '+(178-((x<400)?(x-150)*0.44:(650-x)*0.44))+' L'+x+' 178 ';}
+  var svg='<svg class="scene" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" aria-label="Older Queensland house showing where asbestos may be found">'+
+    '<rect x="0" y="318" width="700" height="42" fill="#DDE7D0"/>'+
+    // tank
+    '<rect x="16" y="170" width="48" height="148" rx="10" fill="#4F7F5E"/><path d="M16 200h48M16 235h48M16 270h48" stroke="#3d6549" stroke-width="2"/>'+
+    // fence
+    '<g fill="#C9C6BC" stroke="#9c988c"><path d="M66 270 l14 -6 l14 6 l14 -6 l14 6 l14 -6 v54 h-70 Z"/></g><path d="M66 282h70M66 300h70" stroke="#9c988c" stroke-width="1.5"/>'+
+    // roof (corrugated)
+    '<polygon points="150,178 400,68 650,178" fill="#B9B6AE"/><path d="'+corr+'" stroke="#8f8b82" stroke-width="1.4"/>'+
+    // eaves
+    '<rect x="150" y="178" width="500" height="10" fill="#E9E5DC" stroke="#bdb6a6"/>'+
+    // walls (fibro with cover strips)
+    '<rect x="160" y="188" width="480" height="130" fill="#F1EBDD" stroke="#d2c6ae"/>'+
+    '<path d="M220 188v130M280 188v130M340 188v130M520 188v130M580 188v130" stroke="#d9cdb4" stroke-width="3"/>'+
+    // window w putty
+    '<rect x="182" y="202" width="62" height="46" fill="#BFE0F3" stroke="#fff" stroke-width="4"/><path d="M213 202v46M182 225h62" stroke="#fff" stroke-width="3"/>'+
+    // meter box
+    '<rect x="244" y="228" width="48" height="54" rx="3" fill="#7a5a3a" stroke="#4d3824" stroke-width="2"/><rect x="250" y="236" width="36" height="38" fill="#2b2523"/><circle cx="262" cy="248" r="5" fill="#d7d2c4"/><circle cx="276" cy="262" r="4" fill="#d7d2c4"/>'+
+    // door
+    '<rect x="350" y="238" width="44" height="80" fill="#8a5a3a"/><circle cx="386" cy="280" r="2.5" fill="#e8d08a"/>'+
+    // bathroom cutaway
+    '<rect x="420" y="196" width="100" height="116" fill="#fff" stroke="#9aa3ad" stroke-width="2" stroke-dasharray="5 3"/><text x="470" y="210" font-size="9" text-anchor="middle" fill="#62666E" font-family="Oswald, Arial Narrow, sans-serif">BATHROOM (CUTAWAY)</text>'+
+    '<g stroke="#cfd6dd"><path d="M420 228h100M420 248h100M420 268h100M445 214v70M470 214v70M495 214v70"/></g>'+
+    '<rect x="420" y="288" width="100" height="24" fill="#d9c9a6"/><path d="M445 288v24M470 288v24M495 288v24" stroke="#bfae88"/>'+
+    // downpipe
+    '<rect x="640" y="180" width="10" height="138" fill="#B9B6AE" stroke="#8f8b82"/>'+
+    spots+'</svg>';
+  var total=AHS.filter(function(h){return h.src;}).length;
+  var html='<div class="activity reveal" data-d="3" id="'+id+'"><div class="act-h"><span class="pill">Activity</span>Where could asbestos be on this pre-1990 house?</div>'+
+    '<p style="font-size:15px;margin-bottom:10px">Tap the pulsing points. Find all <b>'+total+'</b> places asbestos could be — watch out, not every point is one.</p>'+
+    '<div class="hs-wrap">'+svg+'</div>'+
+    '<div class="hs-info" id="'+id+'-info">Tap a point to inspect it.</div>'+
+    '<div class="act-status" id="'+id+'-st">0 of '+total+' found</div></div>';
+  function wire(){
+    var root=document.getElementById(id); if(!root) return;
+    var found=state.activity[id+'-f']||{};
+    function paint(){
+      var n=0; AHS.forEach(function(h){var g=root.querySelector('.hs[data-id="'+h.id+'"]'); if(found[h.id]){g.classList.add('found'); if(h.src)n++;}});
+      var st=document.getElementById(id+'-st');
+      if(n>=total){st.className='act-status ok';st.textContent='All '+total+' found. On a house built before 1990, treat all of these as asbestos unless a test says otherwise.';state.activity[id]=true;unlockNext();}
+      else {st.className='act-status';st.textContent=n+' of '+total+' found';}
+    }
+    root.querySelectorAll('.hs').forEach(function(g){
+      function hit(){var h=AHS.filter(function(x){return x.id===g.getAttribute('data-id');})[0]; found[h.id]=true; state.activity[id+'-f']=found;
+        document.getElementById(id+'-info').innerHTML='<b>'+(h.src?'✔ ':'✖ ')+h.name+'</b><br>'+h.info; paint();}
+      g.addEventListener('click',hit); g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();hit();}});
+    });
+    paint();
+  }
+  return {html:html,wire:wire,gate:id};
+}
+
+/* ---------- Welcome ---------- */
+var ROLES=[
+  {k:'elec',b:'Electrical',s:'Electricians, solar, data & apprentices'},
+  {k:'plumb',b:'Plumbing & drainage',s:'Plumbers, drainers & apprentices'},
+  {k:'hvac',b:'Air conditioning',s:'HVAC techs & apprentices'},
+  {k:'carp',b:'Carpentry & handyman',s:'Carpenters & apprentices'},
+  {k:'app',b:'Appliances',s:'Appliance repair & test and tag'},
+  {k:'office',b:'Warehouse & office',s:'Stores, office & management',non:true}
+];
+var WELCOME={crumb:'Welcome',hideNav:true,build:function(){
+  return {html:''+
+  '<div class="welcome">'+
+    '<img class="logo reveal" src="'+LOGO+'" alt="Fallon Solutions">'+
+    '<div class="eyebrow reveal" data-d="1">Field Safety Toolbox · <span class="yr">2026</span></div>'+
+    '<h1 class="reveal" data-d="2">Asbestos<br>Awareness</h1>'+
+    '<p class="desc reveal" data-d="3">Most of the houses we work in were built before 1990. This self-paced toolbox covers how to <b>spot</b> asbestos, where it hides, what you can and can’t do on our jobs, and how to <b>control the dust, clean up and get the waste back to the office</b> — straight from our SWMS – Asbestos.</p>'+
+    '<div class="meta-row reveal" data-d="4"><div class="m">'+I.clock+'About 15 minutes</div><div class="m">'+I.touch+'Interactive</div><div class="m">'+I.mail+'Results sent to Safety</div></div>'+
+    '<div class="form reveal" data-d="5">'+
+      '<div class="field"><label for="fName">Full name</label><input id="fName" autocomplete="name" placeholder="First and last name" value="'+esc(state.user.name)+'"></div>'+
+      '<div class="field"><label for="fEmail">Fallon email</label><input id="fEmail" type="email" autocomplete="email" placeholder="name@fallonsolutions.com.au" value="'+esc(state.user.email)+'"></div>'+
+      '<div class="field"><label>My work is…</label><div class="roles">'+ROLES.map(function(r){return '<button type="button" class="role'+(r.non?' nonel':'')+(state.user.role===r.k?' on':'')+'" data-k="'+r.k+'"><b>'+r.b+'</b><span>'+r.s+'</span></button>';}).join('')+'</div></div>'+
+      '<div class="ferr" id="ferr"></div>'+
+      '<button class="btn btn-primary start-btn" id="startBtn">Begin the toolbox &rarr;</button>'+
+      '<div class="trackbadge" id="trackNote"></div>'+
+    '</div>'+
+  '</div>',wire:function(){
+    function note(){var t=document.getElementById('trackNote');
+      t.innerHTML=state.user.role?ii(I.list)+'All-staff sections + a page for '+roleLabel(state.user.role):'';}
+    document.querySelectorAll('.role').forEach(function(b){b.onclick=function(){document.querySelectorAll('.role').forEach(function(x){x.classList.remove('on');});b.classList.add('on');state.user.role=b.getAttribute('data-k');note();};});
+    note();
+    document.getElementById('startBtn').onclick=function(){
+      var n=document.getElementById('fName'), e=document.getElementById('fEmail'), er=document.getElementById('ferr');
+      n.classList.remove('err');e.classList.remove('err');
+      var name=n.value.trim().replace(/\s+/g,' '), email=e.value.trim();
+      if(name.split(' ').length<2){n.classList.add('err');er.textContent='Please enter your first and last name.';n.focus();return;}
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){e.classList.add('err');er.textContent='Please enter a valid email address.';e.focus();return;}
+      if(!state.user.role){er.textContent='Please choose the work you do.';return;}
+      state.user.name=name; state.user.email=email; state.track=state.user.role;
+      buildTrack(); go(1);
+    };
+  }};
+}};
+
+/* ---------- SHARED SECTIONS ---------- */
+var SHARED=[
+S('Why it matters',function(){return {html:''+
+  kick('01','Why it matters')+
+  '<h2 class="head reveal" data-d="1">You can’t see it, smell it or feel it</h2>'+
+  '<p class="lede reveal" data-d="2">Asbestos fibres are microscopic. Once breathed in they lodge in the lungs for good — and the diseases they cause show up <b>20 to 50 years later</b>. There is no safe level of exposure, and the damage can’t be undone.</p>'+
+  flips([
+    {q:'Mesothelioma',a:'An aggressive cancer of the lining of the lungs or abdomen — almost only caused by asbestos. Median survival is around 12–21 months after diagnosis.'},
+    {q:'Lung cancer',a:'Asbestos exposure raises the risk — and smoking multiplies it.'},
+    {q:'Asbestosis',a:'Scarring of the lungs. Breathlessness that gets worse over time. No cure.'},
+    {q:'Pleural disease',a:'Thickening and plaques on the lung lining — often a sign of past exposure.'}
+  ])+
+  '<div class="shockline reveal" data-d="4"><div class="q">The tradies getting sick today were exposed 30 years ago.</div><div class="sub">What you do on site this week decides your health in 2056 — and your apprentice’s.</div></div>'};}),
+
+S('Spotting it',function(){return {html:''+
+  kick('02','Spotting asbestos')+
+  '<h2 class="head reveal" data-d="1">If in doubt, treat it as asbestos</h2>'+
+  '<div class="grid g2">'+
+    '<div class="card reveal" data-d="2"><h3><span class="chip">'+I.clock+'</span>Check the age</h3><ul><li><b>Built before 1990:</b> assume asbestos is there.</li><li>Early–mid 1980s: products were being phased out — still likely.</li><li>Asbestos wasn’t fully banned until <b>31 December 2003</b>, so it can turn up in work done right up to then.</li></ul></div>'+
+    '<div class="card blue reveal" data-d="3"><h3><span class="chip b">'+I.alert+'</span>Clues — not proof</h3><ul><li>Brand names: <b>Fibrolite, Hardiflex</b> (asbestos versions up to 1981), <b>Super Six, Durabestos</b>, Zelemite.</li><li>A dimpled pattern on the back of old fibro sheet.</li><li>Dark brown/black switchboard panels with a tar smell.</li></ul></div>'+
+  '</div>'+
+  '<div class="note reveal" data-d="4">'+ii(I.shield)+'You <b>can’t identify asbestos by looking at it</b>. Only a lab test confirms it. Until then, our SWMS says: on a domestic job <b>treat it as asbestos or get a sample tested</b>. On commercial or other non-domestic sites, <b>get a copy of the asbestos register</b> before you start.</div>'};}),
+
+S('Where it hides',function(){var a=asbHouse('ahouse');return {html:''+
+  kick('03','Where it hides',true)+
+  '<h2 class="head reveal" data-d="1">More places than you think</h2>'+
+  '<p class="lede reveal" data-d="2">This Asbestos Awareness Week, WorkSafe Queensland is pointing out the less obvious spots: <b>window putty, bathroom linings, electrical meter boxes and vinyl flooring</b> — as well as the usual roofs, eaves and wall sheeting.</p>'+
+  a.html+
+  '<div class="note blue reveal" data-d="4">'+ii(I.play)+'Take the 10-minute <b>Asbestos 360° virtual tour</b> from WorkSafe (link in Dean’s Asbestos Awareness Week email) — it walks you through a whole house.</div>',wire:a.wire,gate:a.gate};}),
+
+S('Friable or bonded',function(){var a=verdictActivity('fri','Bonded — or friable (hands off)?','Bonded (non-friable)','Friable — hands off',[
+    {t:'Flat fibro sheet in good condition under the eaves.',ok:true,why:'Asbestos-cement sheet is <b>bonded</b> — the fibres are locked in cement. Still asbestos: only touch it within the kit and SWMS rules.'},
+    {t:'Crumbly grey pipe lagging around an old hot water system.',ok:false,why:'Pipe lagging and thermal insulation are <b>friable</b>. Class A licensed removalist only — don’t touch it.'},
+    {t:'The backing on old sheet vinyl that’s lifting in the laundry.',ok:false,why:'The backing of old sheet vinyl and lino is <b>friable</b>. Don’t lift it, cut it or scrape it.'},
+    {t:'Low density fibre board (LDB) ceiling lining — soft and lightweight.',ok:false,why:'Our SWMS: <b>LDB is now classified as friable</b>. Hands off.'},
+    {t:'Wadding inside an old rewireable porcelain fuse holder.',ok:false,why:'Asbestos textile wadding in old fuse holders is <b>friable</b>. Stop and call your supervisor.'},
+    {t:'A corrugated fibro fence that’s been badly broken by a falling tree.',ok:false,why:'Bonded material that is broken, crumbling or weathered can become <b>friable</b>. Treat damaged material as friable and keep clear.'}]);
+  return {html:''+
+  kick('04','Friable or bonded')+
+  '<h2 class="head reveal" data-d="1">Bonded can become friable</h2>'+
+  '<div class="grid g2">'+
+    '<div class="card reveal" data-d="2"><h3><span class="chip">'+I.alert+'</span>Friable — never touch</h3><ul><li>Can be crumbled to powder by hand when dry.</li><li>Releases fibres easily — the highest risk.</li><li>Pipe lagging, sprayed insulation, heater/stove linings, vinyl backing, LDB.</li><li><b>Class A licensed removalist only.</b></li></ul></div>'+
+    '<div class="card blue reveal" data-d="3"><h3><span class="chip b">'+I.shield+'</span>Bonded (non-friable)</h3><ul><li>Fibres locked in cement or resin — fibro, AC pipes, Super Six, vinyl tiles, old meter panels.</li><li>Low risk <b>while intact and undisturbed</b>.</li><li>Cutting, drilling, breaking or weathering releases fibres.</li></ul></div>'+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+
+S('What you can do',function(){var a=verdictActivity('cando','Our rule — OK with the kit, or STOP and call?','OK — kit & SWMS','STOP — call',[
+    {t:'Drill a 20 mm hole through fibro eaves for a cable or pipe.',ok:true,why:'Within our rule: <b>25 mm max</b>, with the asbestos kit and the SWMS controls (gel &amp; cup, low-speed drill, seal the edges).'},
+    {t:'Screw a bracket into an old fibro wall.',ok:true,why:'Screwing into it is allowed with the kit and SWMS controls — wet it or use gel, drop sheet underneath, clean up.'},
+    {t:'Cut a 65 mm penetration through fibro for an air con pipe run.',ok:false,why:'Bigger than <b>25 mm</b>. STOP and call your supervisor or Dean — we’ll organise a licensed company.'},
+    {t:'Remove and replace a sheet of fibro in the bathroom.',ok:false,why:'That’s removal, not a small hole. Legally it’s under 10 m², but Fallon’s rule is no removal — STOP and call, and we’ll pay a licensed company.'},
+    {t:'Grind or angle-grind a fibro sheet to make it fit.',ok:false,why:'Never use high-speed power tools or abrasives on asbestos. STOP and call.'},
+    {t:'Pull an old meter panel off the wall to swap it.',ok:false,why:'More than a 25 mm hole or a screw. STOP and call your supervisor or Dean before going any further.'}]);
+  return {html:''+
+  kick('05','What you can — and can’t — do',true)+
+  '<h2 class="head reveal" data-d="1">25 mm and a screw. That’s it.</h2>'+
+  '<div class="grid g2">'+
+    '<div class="card blue reveal" data-d="2"><h3><span class="chip b">'+I.check+'</span>You CAN — only with an asbestos kit from stores and following the SWMS</h3><ul><li>Screw into it.</li><li>Cut or drill small holes — <b>25 mm max</b>.</li><li>Don’t let dust become airborne.</li><li>Clean the work area.</li><li>Double bag the waste and seal it with duct tape.</li></ul></div>'+
+    '<div class="card reveal" data-d="3"><h3><span class="chip">'+I.cross+'</span>NOT acceptable</h3><ul><li>Uncontrolled asbestos work.</li><li>Leaving asbestos waste on site.</li><li>Asbestos waste in your van unless it’s double bagged.</li><li>Asbestos waste in the office shipping container unless it’s double bagged.</li></ul></div>'+
+  '</div>'+
+  '<div class="note blue reveal" data-d="4">'+ii(I.shield)+'<b>Drilling is not removing.</b> The law lets anyone remove up to <b>10 m²</b> of bonded asbestos without a licence. Fallon’s rule is stricter: we only <b>screw into it or make holes up to 25 mm</b>. Any removal — even one sheet or one old panel — or anything bigger than 25 mm, Fallon pays an <b>external licensed company</b> to do.</div>'+
+  '<div class="note reveal" data-d="4">'+ii(I.alert)+'<b>If the job needs more than this, STOP</b> and call your supervisor or Dean before going any further. We’ll organise a licensed company to do it.</div>'+
+  a.html,wire:a.wire,gate:a.gate};}),
+
+S('Before you start',function(){var a=multiActivity('kit','Before you touch it','What does the SWMS need <b>before</b> you drill or screw into suspected asbestos?',[
+    {t:'Site risk assessment done and recorded, with asbestos identified',ok:true,why:'Yes — first control in the SWMS. Everyone working there signs on.'},
+    {t:'Asbestos register checked (commercial / non-domestic sites)',ok:true,why:'Yes. Domestic homes don’t have to have one — so treat it as asbestos or get it tested.'},
+    {t:'Asbestos kit from stores, checked — faulty gear replaced',ok:true,why:'Yes. Check the kit and your PPE before you start; replace anything damaged.'},
+    {t:'Coveralls, gloves, eye protection and a P2 respirator that fits — sleeves and legs taped',ok:true,why:'Yes. The P2 mask in the kit only works with a good seal — be clean-shaven where it seals and fit-check it every time.'},
+    {t:'Others kept out — barricade or tape and signage where practical',ok:true,why:'Yes. Keep the customer, kids, pets and other trades clear of the work zone.'},
+    {t:'A high-speed drill so you’re in and out quickly',ok:false,why:'No — never. Our SWMS: <b>hand drill or low-speed battery drill only</b>. High speed throws fibres into the air.'}]);
+  return {html:''+
+  kick('06','Before you start')+
+  '<h2 class="head reveal" data-d="1">Plan it before you touch it</h2>'+
+  a.html,wire:a.wire,gate:a.gate};}),
+
+S('Control the dust',function(){var a=orderActivity('drill','Drilling a small hole in fibro — put it in order',[
+    {t:'Drop sheet down',d:'Disposable plastic drop sheet under where you’re drilling; kit, PPE and bags ready.'},
+    {t:'Mark & wet / gel',d:'Mark the point. Cover the entry and exit points with a generous amount of gel or paste (or mist with water).'},
+    {t:'Gel-filled cup on the bit',d:'Drill bit through a hole in the bottom of a disposable cup filled with gel — held firmly against the surface.'},
+    {t:'Drill slowly',d:'Hand drill or low-speed battery drill only. Never high speed.'},
+    {t:'Seal the edges',d:'Seal the cut edges with sealant (e.g. PVA). Fit a sleeve if a cable goes through.'},
+    {t:'Wipe & bag',d:'Wet-wipe the tool, surface and area with disposable rags; everything goes into the asbestos bags.'}]);
+  return {html:''+
+  kick('07','Control the dust')+
+  '<h2 class="head reveal" data-d="1">All dust must be managed</h2>'+
+  '<p class="lede reveal" data-d="2">If the dust doesn’t get into the air, it can’t get into your lungs. Every control in the SWMS is about keeping it wet, contained and caught.</p>'+
+  '<div class="checklist">'+
+    chk(2,'<b>Wet it down</b> — water spray or misting bottle, or gel / paste (wallpaper paste, shaving cream or hair gel) on the drill points.','info')+
+    chk(2,'<b>Hand tools or low-speed</b> battery drill; blade-type cutters preferred for cutting.','info')+
+    chk(3,'<b>Seal cut edges</b> with sealant so fibres can’t shed from them.','info')+
+    chk(3,'Never use <b>high-speed drills, grinders, saws, sanders or wire brushes</b>.','danger')+
+    chk(4,'Never <b>dry sweep, use compressed air, water-blast, jet</b> or use a normal vacuum on asbestos dust.','danger')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+
+S('Clean up',function(){var a=multiActivity('clean','Leaving the site clean','Which of these are OK ways to clean up asbestos dust and debris?',[
+    {t:'Wet-wipe surfaces with disposable rags',ok:true,why:'Yes — wet wiping is the go-to. The rags then go in the asbestos bags.'},
+    {t:'Fold the drop sheet in on itself and bag it',ok:true,why:'Yes — fold it so the dusty side is inside, then into the bags.'},
+    {t:'An asbestos-rated (H-class) vacuum',ok:true,why:'Yes — the SWMS lists asbestos vacuum cleaners. A normal or workshop vacuum is not one.'},
+    {t:'A quick sweep with a broom and dustpan',ok:false,why:'No. Dry sweeping throws fibres back into the air. Sweeping asbestos waste is prohibited.'},
+    {t:'Blow it off with the compressor',ok:false,why:'No — never use compressed air.'},
+    {t:'The customer’s household vacuum',ok:false,why:'No. Household vacuums blow fine fibres straight out the exhaust — and contaminate the vacuum.'}]);
+  return {html:''+
+  kick('08','Clean up',true)+
+  '<h2 class="head reveal" data-d="1">Leave the site clean</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Wash down or wet-wipe the area of contamination — tools, surfaces and the floor around the work.')+
+    chk(2,'<b>Keep your respirator on</b> until all waste is bagged, sealed and the clean-up is finished.')+
+    chk(3,'Check for residual asbestos — dust, chips, offcuts — before you leave the job.')+
+    chk(3,'Take off disposable PPE last and bag it with the waste. Wash your hands and face.')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+
+S('Waste',function(){var a=orderActivity('waste','Getting the waste back to the office — put it in order',[
+    {t:'Collect everything',d:'Offcuts, dust, rags, drop sheet, gloves, coveralls and the disposable respirator.'},
+    {t:'First bag',d:'Heavy-duty (0.2 mm) clear plastic bag marked “Caution Asbestos”.'},
+    {t:'Second bag',d:'Put the first bag inside a second bag — double bagged.'},
+    {t:'Duct tape',d:'Seal it with duct tape (bags and tape are in the kit).'},
+    {t:'Into the van',d:'Only once it’s double bagged and taped. Keep it where it won’t get damaged.'},
+    {t:'Asbestos bin at the office',d:'Bring it back to the Fallon asbestos waste bin at the office. Never leave it on site or in a general bin.'}]);
+  return {html:''+
+  kick('09','Waste')+
+  '<h2 class="head reveal" data-d="1">Double bag. Duct tape. Office bin.</h2>'+
+  '<p class="lede reveal" data-d="2">Asbestos waste <b>never stays on site</b> and never goes in the customer’s wheelie bin, a skip or a general waste bin. It comes back with you to the <b>asbestos bin at the office</b>.</p>'+
+  a.html+
+  '<div class="note reveal" data-d="4">'+ii(I.alert)+'Bag torn or not taped? Re-bag it before it goes in the van. Unbagged asbestos waste is not allowed in your van or the office shipping container.</div>',wire:a.wire,gate:a.gate};}),
+
+S('If it goes wrong',function(){var a=scenarioActivity('crack','Scenario','You’ve just cracked a fibro sheet',
+  'You’re fitting a bracket under the eaves of a 1970s house. The ladder shifts and the corner of the fibro eave sheet cracks and a chunk falls onto the driveway. The customer’s kids are playing nearby.',
+  [{t:'Sweep up the bits quickly and carry on before anyone notices.',ok:false,out:'Sweeping makes fibres airborne — and hiding it puts the family at risk. Never.'},
+   {t:'Stop. Keep the kids and customer away. Don’t break it further — mist it with water, collect the pieces by hand into the asbestos bags with your PPE on, wet-wipe the area, double bag and tape. Then call your supervisor or Dean about the damaged sheet.',ok:true,out:'That’s it. Control it, clean it, report it. The damaged sheet itself needs a proper repair — we’ll organise that.'},
+   {t:'Hose the driveway down to wash it away.',ok:false,out:'Hosing spreads it into the garden and drains, and it dries back into dust. Mist to keep it damp, then collect and bag it.'}]);
+  return {html:''+kick('10','If it goes wrong')+'<h2 class="head reveal" data-d="1">Stop. Control. Clean. Report.</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Stop work — don’t disturb it any further.','danger')+
+    chk(2,'Keep everyone out of the area.','danger')+
+    chk(3,'Small amount of bonded debris: PPE on, wet it, collect by hand, wet-wipe, double bag and tape.','info')+
+    chk(3,'Anything bigger, friable, or you’re not sure: <b>leave it</b>, keep people away and call your supervisor or Dean.','info')+
+    chk(4,'Report it — tell your Service Manager and lodge an incident report, however small.','info')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};})
+];
+
+/* ---------- ROLE PAGE (one per trade) ---------- */
+var ROLEPAGE={
+ elec:S('Electrical',function(){var a=scenarioActivity('relec','Scenario','The old Zelemite board',
+   'You’re quoting a switchboard upgrade on a 1965 house. The meter panel is dark brown and smells of tar, and the timber meter box looks lined with fibro.',
+   [{t:'Pull the old panel off and bag it — it’s only one panel.',ok:false,out:'That’s removal, not a 25 mm hole. Under our rule you STOP and call your supervisor or Dean first.'},
+    {t:'Assume it’s asbestos. Don’t start pulling it out — call your supervisor or Dean, and use the asbestos testing option in the price book if it needs confirming. Plan the job around a licensed removal.',ok:true,out:'Right. Treat it as asbestos until tested, and get the removal organised properly before the upgrade goes ahead.'},
+    {t:'Blow the dust out of the meter box with compressed air so you can see properly.',ok:false,out:'Never. Dust inside old meter boxes can contain asbestos — compressed air spreads it everywhere.'}]);
+  return {html:''+kick('T','Electrical')+'<h2 class="head reveal" data-d="1">Boards, meter boxes and pits</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Switchboards and meter panels <b>before 1990 very likely contain asbestos</b> — Zelemite, Lebah, Ausbestos, Miscolite; fibro-lined timber meter boxes.')+
+    chk(2,'Dust and debris <b>inside</b> old meter boxes can be asbestos — don’t blow or brush it out.','danger')+
+    chk(3,'Old rewireable fuse holders can have <b>friable</b> asbestos wadding — hands off.','danger')+
+    chk(3,'Cable through eaves or walls: 25 mm max, gel &amp; cup, low-speed drill, seal the edges and fit a sleeve to protect the cable.','info')+
+    chk(4,'Old electrical and comms pits can be asbestos cement.','info')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+ plumb:S('Plumbing & drainage',function(){var a=scenarioActivity('rplumb','Scenario','A blocked AC sewer line',
+   'A blocked sewer at a 1970s house. The camera shows an old asbestos-cement (AC) pipe, cracked near the junction.',
+   [{t:'Jet it on high pressure to blast through.',ok:false,out:'<b>Never jet asbestos.</b> High-pressure water breaks it up and spreads fibres.'},
+    {t:'Cut the cracked section out with the demo saw and replace it.',ok:false,out:'Power-cutting AC pipe is exactly what releases fibres — and it’s far more than our 25 mm rule. STOP and call.'},
+    {t:'Don’t jet or cut it. Make the customer aware, STOP and call your supervisor or Dean so a licensed company can do the AC pipe work.',ok:true,out:'Right. Asbestos pipe repairs go to a licensed company.'}]);
+  return {html:''+kick('T','Plumbing &amp; drainage')+'<h2 class="head reveal" data-d="1">AC pipes, flues and wet areas</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Asbestos-cement water, sewer and stormwater pipes, flues, gutters and downpipes are common in older homes.')+
+    chk(2,'<b>Never jet</b> AC pipe, and never power-cut it.','danger')+
+    chk(3,'Bathroom and laundry wall linings and vinyl floors — cutting in a new waste or tap set-out through them is drilling asbestos.','info')+
+    chk(3,'Lagging on old hot water pipes and units can be friable — hands off.','danger')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+ hvac:S('Air conditioning',function(){var a=scenarioActivity('rhvac','Scenario','The back-to-back install',
+   'A split system install on a 1982 fibro house. The pipe run needs a 65 mm penetration through the wall.',
+   [{t:'Use the hole saw quickly and vacuum up after.',ok:false,out:'A 65 mm hole is well over our 25 mm limit, and a hole saw at speed releases fibres.'},
+    {t:'Treat the wall as asbestos. STOP and call your supervisor or Dean — the penetration gets done by a licensed company, or the pipe run is changed so it doesn’t go through fibro.',ok:true,out:'Right. Plan it before install day so the job isn’t held up.'},
+    {t:'Drill lots of 25 mm holes in a circle to make the 65 mm hole.',ok:false,out:'That’s getting around the rule, not following it — the total disturbance is the same. STOP and call.'}]);
+  return {html:''+kick('T','Air conditioning')+'<h2 class="head reveal" data-d="1">Penetrations, roof spaces and old heaters</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Pipe runs through fibro walls and eaves: <b>25 mm max</b> with the kit — most AC penetrations are bigger, so plan ahead and call.')+
+    chk(2,'Bracket fixings into fibro: allowed with the kit and SWMS controls.','info')+
+    chk(3,'Old ducted heaters, flues and duct lagging can contain friable asbestos — hands off.','danger')+
+    chk(3,'Roof spaces under old Super Six roofs can have asbestos dust and debris — don’t disturb it.','danger')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+ carp:S('Carpentry & handyman',function(){var a=scenarioActivity('rcarp','Scenario','Replace a damaged eave sheet',
+   'The customer wants a broken eave sheet replaced on a 1975 house.',
+   [{t:'Pry it off, cut a new sheet and fit it.',ok:false,out:'Removing an asbestos sheet is removal work — well beyond 25 mm holes and screws.'},
+    {t:'Treat it as asbestos. STOP and call your supervisor or Dean — add the asbestos testing option from the price book if needed, and a licensed company removes the old sheet.',ok:true,out:'Right. Once it’s out, the new (non-asbestos) sheet is normal carpentry.'},
+    {t:'Screw a new sheet over the top without telling anyone.',ok:false,out:'The broken sheet is still there and still damaged. Tell your supervisor — it needs managing properly.'}]);
+  return {html:''+kick('T','Carpentry &amp; handyman')+'<h2 class="head reveal" data-d="1">Sheeting, eaves and floors</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Fibro walls, eaves, cover strips, wet-area linings, Super Six roofs and fences — the products carpenters touch most.')+
+    chk(2,'Screwing in fixings and small holes up to 25 mm: kit and SWMS controls.','info')+
+    chk(3,'Removing, replacing, cutting or breaking sheets: STOP and call — licensed company.','danger')+
+    chk(3,'Old sheet vinyl backing is friable — don’t lift or scrape it.','danger')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+ app:S('Appliances',function(){var a=scenarioActivity('rapp','Scenario','The 1970s wall oven',
+   'You’re repairing an old wall oven. When you pull the side panel off, the insulation inside is grey, papery and crumbles when touched.',
+   [{t:'Pull it out and replace it with new insulation.',ok:false,out:'Old oven, heater and hot water unit insulation can be friable asbestos. Hands off.'},
+    {t:'Stop. Don’t disturb it further, keep people away, close the panel if you can do it without breaking it more, and call your supervisor or Dean.',ok:true,out:'Right. Friable material is licensed-removalist only.'},
+    {t:'Vacuum the loose bits up with the workshop vac and carry on.',ok:false,out:'A normal vacuum spreads the fibres and contaminates the vac.'}]);
+  return {html:''+kick('T','Appliances')+'<h2 class="head reveal" data-d="1">Old appliances and their insulation</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Old stoves, ovens, heaters and hot water units can have asbestos insulation, linings, gaskets or flash guards.')+
+    chk(2,'Crumbly insulation or linings = treat as friable. Hands off.','danger')+
+    chk(3,'Wall sheeting behind old stoves and heaters is often fibro — fixing back into it follows the 25 mm / kit rule.','info')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};}),
+ office:S('Warehouse & office',function(){var a=scenarioActivity('roff','Scenario','A bag comes back torn',
+   'A tech drops off a bag at the office. It’s single bagged and the bag has a small tear.',
+   [{t:'Put it straight in the asbestos bin — it’ll be fine.',ok:false,out:'Single bagged and torn isn’t acceptable — fibres can escape on the way.'},
+    {t:'Don’t open it or handle it more than you need to. Ask the tech to re-bag it with the kit (PPE on) — double bagged and duct taped — then it goes in the asbestos bin. Let Dean know.',ok:true,out:'Right. Double bagged and taped is the only way it goes in the bin.'},
+    {t:'Throw it in the general waste skip.',ok:false,out:'Never. Asbestos waste only goes in the designated asbestos bin.'}]);
+  return {html:''+kick('T','Warehouse &amp; office')+'<h2 class="head reveal" data-d="1">Kits, bags and the bin</h2>'+
+  '<div class="checklist">'+
+    chk(2,'Asbestos kits are issued from stores — keep them stocked: bags, duct tape, PPE, respirators, rags, gel, drop sheets.')+
+    chk(2,'Only <b>double bagged and duct-taped</b> waste goes in the asbestos bin — and never leave asbestos waste in the shipping container unless it is double bagged.','info')+
+    chk(3,'Never open a bag of asbestos waste.','danger')+
+    chk(3,'Older parts of buildings and sites we visit can have asbestos too — don’t drill or fix into suspect sheeting yourself.','info')+
+  '</div>'+a.html,wire:a.wire,gate:a.gate};})
+};
+
+/* ---------- WRAP-UP ---------- */
+var WRAP=S('Help & next steps',function(){return {html:''+
+  kick('11','Help &amp; next steps')+
+  '<h2 class="head reveal" data-d="1">You don’t have to work it out alone</h2>'+
+  '<div class="grid g2">'+
+    '<div class="card reveal" data-d="2"><h3><span class="chip">'+I.users+'</span>Not sure? Ask.</h3><ul><li>Call your <b>Service Manager</b>, supervisor or Dean — we’ll talk you through it.</li><li>Need it confirmed? Use the <b>asbestos testing option in the price book</b> to add testing to your estimate.</li><li>Not comfortable taking a sample? Tell us and we’ll arrange another option.</li></ul></div>'+
+    '<div class="card blue reveal" data-d="3"><h3><span class="chip b">'+I.check+'</span>Every job, every time</h3><ul><li>Built before 1990? Assume asbestos.</li><li>Only screws and holes up to 25 mm — with the kit and the SWMS.</li><li>Keep it wet, catch the dust, leave the site clean.</li><li>Double bag, duct tape, office asbestos bin.</li></ul></div>'+
+  '</div>'+
+  '<div class="shockline reveal" data-d="4"><div class="q">When in doubt — stop, leave it, and call.</div><div class="sub">Intact, undisturbed asbestos is far less dangerous than disturbed asbestos.</div></div>'};});
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+var Q_ALL=[
+  {q:'A house was built in 1978. Before you drill into the wall sheeting you should…',o:['Assume it’s fine unless it looks damaged','Assume it contains asbestos unless a test says otherwise','Ask the customer if it’s asbestos','Only worry if it’s a commercial building'],a:1,why:'Built before 1990: <b>assume asbestos</b> — on a domestic job, treat it as asbestos or get a sample tested.'},
+  {q:'Which of these is one of the “less obvious” places WorkSafe says asbestos hides?',o:['Window putty','New Colorbond roofing','Brick veneer','Poly rainwater tanks'],a:0,why:'Window putty, bathroom linings, electrical meter boxes and vinyl flooring.'},
+  {q:'Under Fallon’s rule, what can you do to suspected asbestos with an asbestos kit and following the SWMS?',o:['Remove up to 10 m² of sheeting','Screw into it and cut/drill holes up to 25 mm','Cut it with a grinder if you wet it first','Anything, as long as you wear a mask'],a:1,why:'<b>Screw into it or cut small holes — 25 mm max.</b> Anything more: STOP and call.'},
+  {q:'The job needs more than a screw or a 25 mm hole in asbestos. You…',o:['Do it carefully and clean up well','STOP and call your supervisor or Dean — we organise a licensed company','Get the customer to do it','Do it after hours when nobody is around'],a:1,why:'<b>STOP and call</b> before going any further.'},
+  {q:'Which drill does our SWMS allow on asbestos?',o:['Any drill on hammer mode','A hand drill or low-speed battery drill','A high-speed drill so it’s quicker','A core drill'],a:1,why:'<b>Never</b> a high-speed drill — hand drill or low-speed battery drill only.'},
+  {q:'Which material is friable — licensed removalist only?',o:['Flat fibro eave sheet in good condition','Pipe lagging and the backing on old sheet vinyl','Asbestos-cement downpipe','Vinyl floor tiles in good condition'],a:1,why:'Lagging, sprayed insulation, vinyl/lino backing and LDB are <b>friable</b>.'},
+  {q:'How do you clean up asbestos dust after drilling?',o:['Sweep it up','Blow it away with compressed air','Wet-wipe with disposable rags and/or an asbestos (H-class) vacuum, then bag it','Use the customer’s vacuum'],a:2,why:'Wet methods and an asbestos-rated vacuum. <b>No sweeping, no compressed air.</b>'},
+  {q:'When can you take your respirator off?',o:['As soon as you stop drilling','When all waste is bagged, sealed and the clean-up is finished','When you get back to the van','Whenever it gets uncomfortable'],a:1,why:'Our SWMS: keep it on <b>until all waste is bagged, sealed and clean-up is completed</b>.'},
+  {q:'What happens to asbestos waste — including used PPE, rags and the drop sheet?',o:['Customer’s wheelie bin','Left on site in a bag for the customer','Double bagged, sealed with duct tape and brought to the asbestos bin at the office','Single bagged in the van'],a:2,why:'<b>Double bag, duct tape, office asbestos bin.</b> Never left on site.'},
+  {q:'Which respirator do you wear for asbestos work with the kit?',o:['A paper dust mask','A P2 respirator that fits, fit-checked, clean-shaven where it seals','No mask if you keep it wet','Any mask with a valve'],a:1,why:'A <b>P2</b> respirator from the kit — and it only works with a proper seal.'},
+  {q:'Legally, anyone can remove up to 10 m² of bonded asbestos without a licence. At Fallon…',o:['We remove up to 10 m² ourselves','We only screw in or make holes up to 25 mm — any removal goes to an external licensed company','We remove up to 1 m²','Only apprentices remove it'],a:1,why:'<b>Drilling isn’t removing.</b> Fallon pays a licensed company for any removal or anything bigger than 25 mm.'},
+  {q:'You accidentally crack a fibro sheet and a piece falls. First you…',o:['Hose it away','Stop, keep people away and don’t disturb it further','Sweep it up quickly','Finish the job, then deal with it'],a:1,why:'<b>Stop and control the area</b>, then clean up (wet, by hand, bag) or call if it’s more than a small amount — and report it.'},
+  {q:'On a commercial site, before work starts you must…',o:['Ask the cleaner','Get a copy of the asbestos register','Nothing — commercial sites have no asbestos','Take a sample yourself'],a:1,why:'Non-domestic workplaces must have an <b>asbestos register</b> — check it before you start.'}
+];
+function QUIZ(){return Q_ALL;}
+
+
+
+/* ============================================================
+   ENGINE
+   ============================================================ */
+var stage=document.getElementById('stage'), nav=document.getElementById('nav'), nextBtn=document.getElementById('nextBtn'),
+    backBtn=document.getElementById('backBtn'), pbar=document.getElementById('pbar'), crumb=document.getElementById('crumb'), navmid=document.getElementById('navmid');
+
+function buildTrack(){
+  var body=SHARED.slice(0,5).concat([ROLEPAGE[state.track]]).concat(SHARED.slice(5)).concat([WRAP]);
+  SCREENS=[WELCOME].concat(body).concat([{crumb:'Knowledge check',build:function(){return {html:''+
+    '<div class="welcome" style="padding-top:36px"><div class="chip reveal" style="width:64px;height:64px;margin:0 auto 18px;border-radius:16px"><div style="width:30px;height:30px">'+I.check+'</div></div>'+
+    '<div class="eyebrow reveal" data-d="1">Nearly there, '+esc(state.user.name.split(' ')[0])+'</div>'+
+    '<h1 class="reveal" data-d="2" style="font-size:clamp(28px,5vw,42px)">Knowledge Check</h1>'+
+    '<p class="desc reveal" data-d="3">'+QUIZ().length+' questions. You need <b>'+PASS_MARK+'%</b> to complete this toolbox. You’ll see the answer after each one, and you can retry.</p>'+
+    '<button class="btn btn-primary reveal" data-d="4" id="quizStart" style="padding:14px 34px">Start the quiz &rarr;</button></div>',
+    wire:function(){document.getElementById('quizStart').onclick=startQuiz;}};}}]);
+}
+SCREENS=[WELCOME];
+
+function unlockNext(){ var sc=SCREENS[state.i]; if(sc&&sc._gate){state.gate[sc._gate]=true;} refreshNav(); }
+function refreshNav(){
+  var sc=SCREENS[state.i]; var locked=sc&&sc._gate&&!state.activity[sc._gate];
+  nextBtn.disabled=!!locked;
+  navmid.innerHTML=locked?'<span class="lock">'+ii(I.touch)+'Complete the activity to continue</span>':'';
+}
+function renderScreen(){
+  var sc=SCREENS[state.i]; var b=sc.build(); sc._gate=b.gate||null;
+  var div=document.createElement('div'); div.className='screen'; div.innerHTML=b.html;
+  stage.innerHTML=''; stage.appendChild(div); void div.offsetWidth; div.classList.add('active');
+  window.scrollTo(0,0);
+  crumb.textContent=sc.crumb.replace(/&amp;/g,'&');
+  pbar.style.width=(SCREENS.length>1?(state.i/(SCREENS.length-1)*100):0)+'%';
+  nav.style.display=sc.hideNav?'none':'flex';
+  backBtn.style.visibility=state.i<=1?'hidden':'visible';
+  var last=state.i===SCREENS.length-1; nextBtn.style.display=last?'none':'inline-block';
+  if(b.wire) b.wire();
+  refreshNav();
+}
+function go(i){state.i=i;renderScreen();}
+nextBtn.onclick=function(){if(nextBtn.disabled)return; if(state.i<SCREENS.length-1)go(state.i+1);};
+backBtn.onclick=function(){if(state.i>1)go(state.i-1);};
+
+/* ---------- quiz ---------- */
+var quiz={i:0};
+function startQuiz(){state.answers=[];quiz.i=0;nav.style.display='none';renderQuestion();}
+function renderQuestion(){
+  var Q=QUIZ(), item=Q[quiz.i];
+  crumb.textContent='Knowledge check'; pbar.style.width='100%';
+  var div=document.createElement('div'); div.className='screen';
+  div.innerHTML='<div class="qhead reveal"><span class="qcount">Question '+(quiz.i+1)+' of '+Q.length+'</span><span class="qbar"><span style="width:'+(quiz.i/Q.length*100)+'%"></span></span></div>'+
+    '<div class="qtext reveal" data-d="1">'+item.q+'</div>'+
+    '<div class="opts reveal" data-d="2">'+item.o.map(function(t,k){return '<button class="opt" data-k="'+k+'"><span class="key">'+'ABCD'[k]+'</span><span>'+t+'</span></button>';}).join('')+'</div>'+
+    '<div class="feedback" id="fb"></div>'+
+    '<div style="display:flex;justify-content:flex-end;padding-top:20px"><button class="btn btn-primary" id="qNext" disabled>Submit answer</button></div>';
+  stage.innerHTML=''; stage.appendChild(div); void div.offsetWidth; div.classList.add('active'); window.scrollTo(0,0);
+  var sel=null, answered=false, els=div.querySelectorAll('.opt'), qn=document.getElementById('qNext');
+  els.forEach(function(e){e.onclick=function(){if(answered)return;els.forEach(function(x){x.classList.remove('sel');});e.classList.add('sel');sel=parseInt(e.getAttribute('data-k'),10);qn.disabled=false;};});
+  qn.onclick=function(){
+    if(!answered){ if(sel===null)return; answered=true; state.answers[quiz.i]=sel; var ok=sel===item.a;
+      els.forEach(function(e){var k=parseInt(e.getAttribute('data-k'),10);e.classList.add('locked');if(k===item.a)e.classList.add('correct');else if(k===sel)e.classList.add('wrong');});
+      var fb=document.getElementById('fb'); fb.className='feedback show '+(ok?'ok':'no'); fb.innerHTML=(ok?'<b>Correct.</b> ':'<b>Not quite.</b> ')+item.why;
+      qn.textContent=quiz.i===Q.length-1?'See results →':'Next question →';
+    } else { if(quiz.i<Q.length-1){quiz.i++;renderQuestion();} else renderResult(); }
+  };
+}
+function score(){var Q=QUIZ(),c=0;Q.forEach(function(it,i){if(state.answers[i]===it.a)c++;});return {c:c,n:Q.length,p:Math.round(c/Q.length*100)};}
+function renderResult(){
+  var Q=QUIZ(), s=score(), passed=s.p>=PASS_MARK;
+  crumb.textContent='Result';
+  var circ=2*Math.PI*64, off=circ*(1-s.p/100), col=passed?'var(--ok)':'var(--red)';
+  var review=Q.map(function(it,i){var ok=state.answers[i]===it.a;return '<div class="rev"><div class="rq"><span style="color:'+(ok?'var(--ok)':'var(--bad)')+';font-weight:700;margin-right:6px">'+(ok?'✓':'✗')+'</span>'+it.q+'</div>'+(ok?'':'<div class="ra bad">Your answer: '+it.o[state.answers[i]]+'</div>')+'<div class="ra">Correct: '+it.o[it.a]+'</div></div>';}).join('');
+  var div=document.createElement('div'); div.className='screen';
+  div.innerHTML='<div class="result"><div class="scorering reveal"><svg width="150" height="150"><circle cx="75" cy="75" r="64" stroke="var(--line)" stroke-width="12" fill="none"/>'+
+    '<circle id="ring" cx="75" cy="75" r="64" stroke="'+col+'" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" style="transition:stroke-dashoffset 1s ease .2s"/></svg><div class="pct" style="color:'+col+'">'+s.p+'%</div></div>'+
+    '<h2 class="reveal '+(passed?'pass':'fail')+'" data-d="1">'+(passed?'Toolbox passed':'Not passed yet')+'</h2>'+
+    '<p class="rsub reveal" data-d="2">You answered <b>'+s.c+' of '+s.n+'</b> correctly. '+(passed?'One last step: send your completion.':'You need '+PASS_MARK+'% — review the answers and try again.')+'</p>'+
+    '<div class="btn-row reveal" data-d="3">'+(passed?'<button class="btn btn-primary" id="toCert">Complete &amp; send →</button>':'<button class="btn btn-primary" id="retry">Retry the quiz</button>')+'<button class="btn btn-ghost" id="togRev">Review answers</button></div>'+
+    '<div class="review" id="revBox" style="display:none">'+review+'</div></div>';
+  stage.innerHTML=''; stage.appendChild(div); void div.offsetWidth; div.classList.add('active'); window.scrollTo(0,0);
+  setTimeout(function(){var r=document.getElementById('ring');if(r)r.style.strokeDashoffset=off;},60);
+  document.getElementById('togRev').onclick=function(){var b=document.getElementById('revBox');b.style.display=b.style.display==='none'?'flex':'none';};
+  var rt=document.getElementById('retry'); if(rt) rt.onclick=startQuiz;
+  var tc=document.getElementById('toCert'); if(tc) tc.onclick=renderCert;
+}
+
+function roleLabel(k){var r=ROLES.filter(function(x){return x.k===k;})[0];return r?r.b:k;}
+function pad(n){return (n<10?'0':'')+n;}
+function renderCert(){
+  var s=score(), now=new Date();
+  var dmy=pad(now.getDate())+'/'+pad(now.getMonth()+1)+'/'+now.getFullYear();
+  var tm=pad(now.getHours())+':'+pad(now.getMinutes());
+  var version='All staff · '+roleLabel(state.track);
+  var Q=QUIZ();
+  var lines=['Toolbox: '+TOPIC,'Version: '+version,'Name: '+state.user.name,'Email: '+state.user.email,'Role: '+roleLabel(state.user.role),
+    'Date: '+dmy,'Time: '+tm,'Score: '+s.c+'/'+s.n+' ('+s.p+'%)','Result: PASSED','Declaration: I have completed this toolbox. I will treat pre-1990 materials as asbestos, only screw into or drill holes up to 25 mm with an asbestos kit following the SWMS, manage all dust, leave the site clean, double bag and duct tape all asbestos waste and bring it to the asbestos bin at the office, and STOP and call when a job needs more.','',
+    'Answers:'];
+  lines[lines.length-1]='Answers: '+Q.map(function(it,i){return (i+1)+(state.answers[i]===it.a?' ✓':' ✗');}).join('  ');
+  lines.push('','Module: '+VERSION);
+  var subject='Toolbox – '+TOPIC+' – '+state.user.name;
+  var body=lines.join('\r\n');
+  var href='mailto:'+SUBMIT_TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  crumb.textContent='Completed';
+  var div=document.createElement('div'); div.className='screen';
+  div.innerHTML='<div class="result" style="padding-top:26px">'+
+    '<div class="cert reveal"><img class="clogo" src="'+LOGO+'" alt="Fallon Solutions"><div class="ctitle">Certificate of Completion</div><div class="cmod">'+TOPIC.replace('&','&amp;')+' · '+version+'</div>'+
+      '<div class="crow">'+ci('Name',esc(state.user.name))+ci('Role',roleLabel(state.user.role))+ci('Score',s.p+'% ('+s.c+'/'+s.n+')')+ci('Completed',dmy+' · '+tm)+'</div><div class="stamp">Passed</div></div>'+
+    '<button class="decl reveal" data-d="1" id="decl"><span class="bx">'+I.check+'</span><span>I completed this toolbox myself. I will <b>treat pre-1990 materials as asbestos</b>, only screw in or drill holes <b>up to 25 mm</b> with the kit and SWMS, <b>manage all dust and leave the site clean</b>, <b>double bag and duct tape</b> the waste and bring it to the <b>asbestos bin at the office</b> — and <b>STOP and call</b> when a job needs more.</span></button>'+
+    '<div class="sendbox reveal" data-d="2"><span class="se">Last step</span><div class="stt">Send your completion to Safety</div><div class="ssub">Opens your email with everything filled in — just press <b>Send</b>.</div>'+
+      '<a class="btn" id="sendBtn" href="'+href+'" aria-disabled="true">'+ii(I.mail)+'Open email &amp; send</a></div>'+
+    '<div class="sentok" id="sentok">Email didn’t open? Tap <b>Copy details</b> and email them to <b>'+SUBMIT_TO+'</b> with the subject “'+esc(subject)+'”.</div>'+
+    '<div class="minor-links reveal" data-d="3"><button id="copyBtn">Copy details</button><span>&middot;</span><button id="printBtn">Save / print certificate</button><span>&middot;</span><button id="restart">Start over</button></div>'+
+    '<p style="font-size:11.5px;color:var(--slate);margin-top:18px">'+VERSION+'</p></div>';
+  stage.innerHTML=''; stage.appendChild(div); void div.offsetWidth; div.classList.add('active'); window.scrollTo(0,0);
+  var decl=document.getElementById('decl'), send=document.getElementById('sendBtn');
+  decl.onclick=function(){decl.classList.toggle('on'); send.setAttribute('aria-disabled',decl.classList.contains('on')?'false':'true');};
+  send.addEventListener('click',function(e){ if(!decl.classList.contains('on')){e.preventDefault();toast('Tick the declaration first');return;} setTimeout(function(){document.getElementById('sentok').style.display='block';},800); });
+  document.getElementById('copyBtn').onclick=function(){
+    var txt='To: '+SUBMIT_TO+'\nSubject: '+subject+'\n\n'+lines.join('\n');
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast('Copied — paste into an email');},function(){fallbackCopy(txt);});} else fallbackCopy(txt);
+  };
+  document.getElementById('printBtn').onclick=function(){window.print();};
+  document.getElementById('restart').onclick=function(){state.i=0;state.activity={};state.answers=[];SCREENS=[WELCOME];renderScreen();};
+}
+function fallbackCopy(t){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Copied — paste into an email');}catch(e){toast('Copy failed — please note your details');}document.body.removeChild(a);}
+function ci(k,v){return '<div class="ci"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>';}
+
+/* boot */
+document.getElementById('brandLogo').src=LOGO;
+renderScreen();
+</script>
+</body>
+</html>
