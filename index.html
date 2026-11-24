@@ -850,7 +850,7 @@ S('Where it hides',function(){var a=asbHouse('ahouse');return {html:''+
   '<h2 class="head reveal" data-d="1">More places than you think</h2>'+
   '<p class="lede reveal" data-d="2">This Asbestos Awareness Week, WorkSafe Queensland is pointing out the less obvious spots: <b>window putty, bathroom linings, electrical meter boxes and vinyl flooring</b> — as well as the usual roofs, eaves and wall sheeting.</p>'+
   a.html+
-  '<div class="note blue reveal" data-d="4">'+ii(I.play)+'Take the 10-minute <b>Asbestos 360° virtual tour</b> from WorkSafe (link in Dean’s Asbestos Awareness Week email) — it walks you through a whole house.</div>',wire:a.wire,gate:a.gate};}),
+  '<div class="note blue reveal" data-d="4">'+ii(I.play)+'Take the 10-minute <b>Asbestos 360° virtual tour</b> from WorkSafe (link in the Asbestos Awareness Week email) — it walks you through a whole house.</div>',wire:a.wire,gate:a.gate};}),
 
 S('Friable or bonded',function(){var a=verdictActivity('fri','Bonded — or friable (hands off)?','Bonded (non-friable)','Friable — hands off',[
     {t:'Flat fibro sheet in good condition under the eaves.',ok:true,why:'Asbestos-cement sheet is <b>bonded</b> — the fibres are locked in cement. Still asbestos: only touch it within the kit and SWMS rules.'},
@@ -870,19 +870,20 @@ S('Friable or bonded',function(){var a=verdictActivity('fri','Bonded — or fria
 S('What you can do',function(){var a=verdictActivity('cando','Our rule — OK with the kit, or STOP and call?','OK — kit & SWMS','STOP — call',[
     {t:'Drill a 20 mm hole through fibro eaves for a cable or pipe.',ok:true,why:'Within our rule: <b>25 mm max</b>, with the asbestos kit and the SWMS controls (gel &amp; cup, low-speed drill, seal the edges).'},
     {t:'Screw a bracket into an old fibro wall.',ok:true,why:'Screwing into it is allowed with the kit and SWMS controls — wet it or use gel, drop sheet underneath, clean up.'},
-    {t:'Cut a 65 mm penetration through fibro for an air con pipe run.',ok:false,why:'Bigger than <b>25 mm</b>. STOP and call your supervisor or Dean — we’ll organise a licensed company.'},
-    {t:'Remove and replace a sheet of fibro in the bathroom.',ok:false,why:'That’s removal, not a small hole. Legally it’s under 10 m², but Fallon’s rule is no removal — STOP and call, and we’ll pay a licensed company.'},
-    {t:'Grind or angle-grind a fibro sheet to make it fit.',ok:false,why:'Never use high-speed power tools or abrasives on asbestos. STOP and call.'},
-    {t:'Pull an old meter panel off the wall to swap it.',ok:false,why:'More than a 25 mm hole or a screw. STOP and call your supervisor or Dean before going any further.'}]);
+    {t:'Cut a 65 mm penetration through fibro for an air con pipe run.',ok:false,why:'Bigger than <b>25 mm</b>. STOP and talk with your Service Manager — we’ll organise a licensed company.'},
+    {t:'Cut a 90 mm hole in a fibro ceiling for a new downlight.',ok:false,why:'No large holes — <b>25 mm max</b>, even for light fittings. STOP and talk with your Service Manager.'},
+    {t:'Break up a fibro sheet into pieces so it’s easier to get out.',ok:false,why:'Never break or cut it to remove it. Bonded asbestos we remove comes out <b>whole</b>.'},
+    {t:'Grind or angle-grind a fibro sheet to make it fit.',ok:false,why:'Never use high-speed power tools or abrasives on asbestos. STOP and talk with your Service Manager.'},
+    {t:'Remove an old asbestos switchboard panel whole — unscrewed, not broken or cut — and double bag it.',ok:true,why:'Allowed with the kit and SWMS: remove it <b>whole</b>, keep it wet, don’t break it, double bag and tape it. Talk with your Service Manager first — we’d rather use an outside company where we can.'}]);
   return {html:''+
   kick('05','What you can — and can’t — do',true)+
-  '<h2 class="head reveal" data-d="1">25 mm and a screw. That’s it.</h2>'+
+  '<h2 class="head reveal" data-d="1">Small holes. Whole pieces. Nothing broken.</h2>'+
   '<div class="grid g2">'+
-    '<div class="card blue reveal" data-d="2"><h3><span class="chip b">'+I.check+'</span>You CAN — only with an asbestos kit from stores and following the SWMS</h3><ul><li>Screw into it.</li><li>Cut or drill small holes — <b>25 mm max</b>.</li><li>Don’t let dust become airborne.</li><li>Clean the work area.</li><li>Double bag the waste and seal it with duct tape.</li></ul></div>'+
-    '<div class="card reveal" data-d="3"><h3><span class="chip">'+I.cross+'</span>NOT acceptable</h3><ul><li>Uncontrolled asbestos work.</li><li>Leaving asbestos waste on site.</li><li>Asbestos waste in your van unless it’s double bagged.</li><li>Asbestos waste in the office shipping container unless it’s double bagged.</li></ul></div>'+
+    '<div class="card blue reveal" data-d="2"><h3><span class="chip b">'+I.check+'</span>You CAN — only with an asbestos kit from stores and following the SWMS</h3><ul><li>Screw into it.</li><li>Cut or drill small holes — <b>25 mm max</b>.</li><li>Remove bonded asbestos <b>whole</b> — e.g. an old switchboard panel — without breaking or cutting it.</li><li>Don’t let dust become airborne.</li><li>Clean the work area.</li><li>Double bag the waste and seal each bag with duct tape.</li></ul></div>'+
+    '<div class="card reveal" data-d="3"><h3><span class="chip">'+I.cross+'</span>NOT acceptable</h3><ul><li>Large holes — e.g. downlight cut-outs or air con penetrations over 25 mm.</li><li>Breaking, cutting or snapping asbestos to get it out.</li><li>Uncontrolled asbestos work.</li><li>Leaving asbestos waste on site.</li><li>Asbestos waste in your van unless it’s double bagged.</li><li>Asbestos waste in the office shipping container unless it’s double bagged.</li></ul></div>'+
   '</div>'+
-  '<div class="note blue reveal" data-d="4">'+ii(I.shield)+'<b>Drilling is not removing.</b> The law lets anyone remove up to <b>10 m²</b> of bonded asbestos without a licence. Fallon’s rule is stricter: we only <b>screw into it or make holes up to 25 mm</b>. Any removal — even one sheet or one old panel — or anything bigger than 25 mm, Fallon pays an <b>external licensed company</b> to do.</div>'+
-  '<div class="note reveal" data-d="4">'+ii(I.alert)+'<b>If the job needs more than this, STOP</b> and call your supervisor or Dean before going any further. We’ll organise a licensed company to do it.</div>'+
+  '<div class="note blue reveal" data-d="4">'+ii(I.shield)+'<b>Drilling is not removing.</b> Holes: <b>25 mm max</b> — no large holes. Removal: the law allows up to <b>10 m²</b> of bonded asbestos without a licence, and we can remove pieces <b>whole</b>, double bagged. No job should come close to 10 m² — if a bigger removal is ever needed you’ll need the asbestos kit plus <b>extra asbestos bags</b>. We’d always prefer an outside licensed company, so <b>talk with your Service Manager</b> first.</div>'+
+  '<div class="note reveal" data-d="4">'+ii(I.alert)+'<b>If the job needs more than this, STOP</b> and talk with your Service Manager before going any further. We’ll organise a licensed company to do it.</div>'+
   a.html,wire:a.wire,gate:a.gate};}),
 
 S('Before you start',function(){var a=multiActivity('kit','Before you touch it','What does the SWMS need <b>before</b> you drill or screw into suspected asbestos?',[
@@ -909,7 +910,7 @@ S('Control the dust',function(){var a=orderActivity('drill','Drilling a small ho
   '<h2 class="head reveal" data-d="1">All dust must be managed</h2>'+
   '<p class="lede reveal" data-d="2">If the dust doesn’t get into the air, it can’t get into your lungs. Every control in the SWMS is about keeping it wet, contained and caught.</p>'+
   '<div class="checklist">'+
-    chk(2,'<b>Wet it down</b> — water spray or misting bottle, or gel / paste (wallpaper paste, shaving cream or hair gel) on the drill points.','info')+
+    chk(2,'<b>Wet it down</b> — mist with a <b>PVA glue and water mix</b> (or water), and gel / paste (wallpaper paste, shaving cream or hair gel) on the drill points.','info')+
     chk(2,'<b>Hand tools or low-speed</b> battery drill; blade-type cutters preferred for cutting.','info')+
     chk(3,'<b>Seal cut edges</b> with sealant so fibres can’t shed from them.','info')+
     chk(3,'Never use <b>high-speed drills, grinders, saws, sanders or wire brushes</b>.','danger')+
@@ -928,18 +929,19 @@ S('Clean up',function(){var a=multiActivity('clean','Leaving the site clean','Wh
   '<h2 class="head reveal" data-d="1">Leave the site clean</h2>'+
   '<div class="checklist">'+
     chk(2,'Wash down or wet-wipe the area of contamination — tools, surfaces and the floor around the work.')+
-    chk(2,'<b>Keep your respirator on</b> until all waste is bagged, sealed and the clean-up is finished.')+
+    chk(2,'Any dust should already be managed — <b>wetted down with the PVA glue and water mix</b>.')+
     chk(3,'Check for residual asbestos — dust, chips, offcuts — before you leave the job.')+
-    chk(3,'Take off disposable PPE last and bag it with the waste. Wash your hands and face.')+
+    chk(3,'<b>Keep your respirator on</b> right to the end: coveralls and gloves into the bag, then the <b>respirator comes off last</b> and goes in the bag before you seal it. Wash your hands and face.')+
   '</div>'+a.html,wire:a.wire,gate:a.gate};}),
 
-S('Waste',function(){var a=orderActivity('waste','Getting the waste back to the office — put it in order',[
-    {t:'Collect everything',d:'Offcuts, dust, rags, drop sheet, gloves, coveralls and the disposable respirator.'},
-    {t:'First bag',d:'Heavy-duty (0.2 mm) clear plastic bag marked “Caution Asbestos”.'},
-    {t:'Second bag',d:'Put the first bag inside a second bag — double bagged.'},
-    {t:'Duct tape',d:'Seal it with duct tape (bags and tape are in the kit).'},
-    {t:'Into the van',d:'Only once it’s double bagged and taped. Keep it where it won’t get damaged.'},
-    {t:'Asbestos bin at the office',d:'Bring it back to the Fallon asbestos waste bin at the office. Never leave it on site or in a general bin.'}]);
+S('Waste',function(){var a=orderActivity('waste','Bagging up and getting the waste back to the office — put it in order',[
+    {t:'Collect everything',d:'Offcuts, dust, rags and the drop sheet — all wetted down with the PVA glue and water mix.'},
+    {t:'First bag',d:'Into a heavy-duty (0.2 mm) clear bag marked “Caution Asbestos”, with your coveralls and gloves.'},
+    {t:'Respirator off — last',d:'The respirator is the last thing to come off. It goes into the first bag too.'},
+    {t:'Duct tape the first bag',d:'Seal the first bag with duct tape.'},
+    {t:'Second bag',d:'Put the taped first bag inside a second bag.'},
+    {t:'Duct tape the second bag',d:'Seal the second bag with duct tape (bags and tape are in the kit).'},
+    {t:'Asbestos bin at the office',d:'Only double bagged and taped in the van — then into the Fallon asbestos bin at the office. Never left on site or in a general bin.'}]);
   return {html:''+
   kick('09','Waste')+
   '<h2 class="head reveal" data-d="1">Double bag. Duct tape. Office bin.</h2>'+
@@ -950,14 +952,14 @@ S('Waste',function(){var a=orderActivity('waste','Getting the waste back to the 
 S('If it goes wrong',function(){var a=scenarioActivity('crack','Scenario','You’ve just cracked a fibro sheet',
   'You’re fitting a bracket under the eaves of a 1970s house. The ladder shifts and the corner of the fibro eave sheet cracks and a chunk falls onto the driveway. The customer’s kids are playing nearby.',
   [{t:'Sweep up the bits quickly and carry on before anyone notices.',ok:false,out:'Sweeping makes fibres airborne — and hiding it puts the family at risk. Never.'},
-   {t:'Stop. Keep the kids and customer away. Don’t break it further — mist it with water, collect the pieces by hand into the asbestos bags with your PPE on, wet-wipe the area, double bag and tape. Then call your supervisor or Dean about the damaged sheet.',ok:true,out:'That’s it. Control it, clean it, report it. The damaged sheet itself needs a proper repair — we’ll organise that.'},
+   {t:'Stop. Keep the kids and customer away. Don’t break it further — mist it with water, collect the pieces by hand into the asbestos bags with your PPE on, wet-wipe the area, double bag and tape. Then talk with your Service Manager about the damaged sheet.',ok:true,out:'That’s it. Control it, clean it, report it. The damaged sheet itself needs a proper repair — we’ll organise that.'},
    {t:'Hose the driveway down to wash it away.',ok:false,out:'Hosing spreads it into the garden and drains, and it dries back into dust. Mist to keep it damp, then collect and bag it.'}]);
   return {html:''+kick('10','If it goes wrong')+'<h2 class="head reveal" data-d="1">Stop. Control. Clean. Report.</h2>'+
   '<div class="checklist">'+
     chk(2,'Stop work — don’t disturb it any further.','danger')+
     chk(2,'Keep everyone out of the area.','danger')+
     chk(3,'Small amount of bonded debris: PPE on, wet it, collect by hand, wet-wipe, double bag and tape.','info')+
-    chk(3,'Anything bigger, friable, or you’re not sure: <b>leave it</b>, keep people away and call your supervisor or Dean.','info')+
+    chk(3,'Anything bigger, friable, or you’re not sure: <b>leave it</b>, keep people away and call your Service Manager.','info')+
     chk(4,'Report it — tell your Service Manager and lodge an incident report, however small.','info')+
   '</div>'+a.html,wire:a.wire,gate:a.gate};})
 ];
@@ -965,23 +967,24 @@ S('If it goes wrong',function(){var a=scenarioActivity('crack','Scenario','You�
 /* ---------- ROLE PAGE (one per trade) ---------- */
 var ROLEPAGE={
  elec:S('Electrical',function(){var a=scenarioActivity('relec','Scenario','The old Zelemite board',
-   'You’re quoting a switchboard upgrade on a 1965 house. The meter panel is dark brown and smells of tar, and the timber meter box looks lined with fibro.',
-   [{t:'Pull the old panel off and bag it — it’s only one panel.',ok:false,out:'That’s removal, not a 25 mm hole. Under our rule you STOP and call your supervisor or Dean first.'},
-    {t:'Assume it’s asbestos. Don’t start pulling it out — call your supervisor or Dean, and use the asbestos testing option in the price book if it needs confirming. Plan the job around a licensed removal.',ok:true,out:'Right. Treat it as asbestos until tested, and get the removal organised properly before the upgrade goes ahead.'},
+   'You’re doing a switchboard upgrade on a 1965 house. The old meter panel is dark brown and smells of tar, and the timber meter box looks lined with fibro.',
+   [{t:'Snap the panel in half so it fits in the bag.',ok:false,out:'Never break or cut it. If we remove it, it comes out <b>whole</b>.'},
+    {t:'Assume it’s asbestos and talk with your Service Manager first. If we’re removing it: kit and PPE on, drop sheet down, wet it and gel the fixings, unscrew it and take it out whole, then double bag and duct tape it for the office asbestos bin.',ok:true,out:'Right. Whole, wet, double bagged — and the fibro-lined box stays put unless the job has been planned for it.'},
     {t:'Blow the dust out of the meter box with compressed air so you can see properly.',ok:false,out:'Never. Dust inside old meter boxes can contain asbestos — compressed air spreads it everywhere.'}]);
   return {html:''+kick('T','Electrical')+'<h2 class="head reveal" data-d="1">Boards, meter boxes and pits</h2>'+
   '<div class="checklist">'+
     chk(2,'Switchboards and meter panels <b>before 1990 very likely contain asbestos</b> — Zelemite, Lebah, Ausbestos, Miscolite; fibro-lined timber meter boxes.')+
     chk(2,'Dust and debris <b>inside</b> old meter boxes can be asbestos — don’t blow or brush it out.','danger')+
     chk(3,'Old rewireable fuse holders can have <b>friable</b> asbestos wadding — hands off.','danger')+
-    chk(3,'Cable through eaves or walls: 25 mm max, gel &amp; cup, low-speed drill, seal the edges and fit a sleeve to protect the cable.','info')+
+    chk(3,'Cable through eaves or walls: 25 mm max, gel &amp; cup, low-speed drill, seal the edges and fit a sleeve. No large holes — e.g. downlight cut-outs in fibro ceilings.','info')+
+    chk(3,'Old asbestos panels can be removed <b>whole</b> with the kit — never broken or cut. Talk with your Service Manager first.','info')+
     chk(4,'Old electrical and comms pits can be asbestos cement.','info')+
   '</div>'+a.html,wire:a.wire,gate:a.gate};}),
  plumb:S('Plumbing & drainage',function(){var a=scenarioActivity('rplumb','Scenario','A blocked AC sewer line',
    'A blocked sewer at a 1970s house. The camera shows an old asbestos-cement (AC) pipe, cracked near the junction.',
    [{t:'Jet it on high pressure to blast through.',ok:false,out:'<b>Never jet asbestos.</b> High-pressure water breaks it up and spreads fibres.'},
     {t:'Cut the cracked section out with the demo saw and replace it.',ok:false,out:'Power-cutting AC pipe is exactly what releases fibres — and it’s far more than our 25 mm rule. STOP and call.'},
-    {t:'Don’t jet or cut it. Make the customer aware, STOP and call your supervisor or Dean so a licensed company can do the AC pipe work.',ok:true,out:'Right. Asbestos pipe repairs go to a licensed company.'}]);
+    {t:'Don’t jet or cut it. Make the customer aware, STOP and talk with your Service Manager so a licensed company can do the AC pipe work.',ok:true,out:'Right. Asbestos pipe repairs go to a licensed company.'}]);
   return {html:''+kick('T','Plumbing &amp; drainage')+'<h2 class="head reveal" data-d="1">AC pipes, flues and wet areas</h2>'+
   '<div class="checklist">'+
     chk(2,'Asbestos-cement water, sewer and stormwater pipes, flues, gutters and downpipes are common in older homes.')+
@@ -992,7 +995,7 @@ var ROLEPAGE={
  hvac:S('Air conditioning',function(){var a=scenarioActivity('rhvac','Scenario','The back-to-back install',
    'A split system install on a 1982 fibro house. The pipe run needs a 65 mm penetration through the wall.',
    [{t:'Use the hole saw quickly and vacuum up after.',ok:false,out:'A 65 mm hole is well over our 25 mm limit, and a hole saw at speed releases fibres.'},
-    {t:'Treat the wall as asbestos. STOP and call your supervisor or Dean — the penetration gets done by a licensed company, or the pipe run is changed so it doesn’t go through fibro.',ok:true,out:'Right. Plan it before install day so the job isn’t held up.'},
+    {t:'Treat the wall as asbestos. STOP and talk with your Service Manager — the penetration gets done by a licensed company, or the pipe run is changed so it doesn’t go through fibro.',ok:true,out:'Right. Plan it before install day so the job isn’t held up.'},
     {t:'Drill lots of 25 mm holes in a circle to make the 65 mm hole.',ok:false,out:'That’s getting around the rule, not following it — the total disturbance is the same. STOP and call.'}]);
   return {html:''+kick('T','Air conditioning')+'<h2 class="head reveal" data-d="1">Penetrations, roof spaces and old heaters</h2>'+
   '<div class="checklist">'+
@@ -1003,20 +1006,20 @@ var ROLEPAGE={
   '</div>'+a.html,wire:a.wire,gate:a.gate};}),
  carp:S('Carpentry & handyman',function(){var a=scenarioActivity('rcarp','Scenario','Replace a damaged eave sheet',
    'The customer wants a broken eave sheet replaced on a 1975 house.',
-   [{t:'Pry it off, cut a new sheet and fit it.',ok:false,out:'Removing an asbestos sheet is removal work — well beyond 25 mm holes and screws.'},
-    {t:'Treat it as asbestos. STOP and call your supervisor or Dean — add the asbestos testing option from the price book if needed, and a licensed company removes the old sheet.',ok:true,out:'Right. Once it’s out, the new (non-asbestos) sheet is normal carpentry.'},
+   [{t:'Pry it off, cut a new sheet and fit it.',ok:false,out:'It’s already broken, and prying it off will break it more. Asbestos we remove must come out whole.'},
+    {t:'Treat it as asbestos. Talk with your Service Manager — add the asbestos testing option from the price book if needed. A broken sheet can’t come out whole, so a licensed company removes it.',ok:true,out:'Right. Once it’s out, the new (non-asbestos) sheet is normal carpentry.'},
     {t:'Screw a new sheet over the top without telling anyone.',ok:false,out:'The broken sheet is still there and still damaged. Tell your supervisor — it needs managing properly.'}]);
   return {html:''+kick('T','Carpentry &amp; handyman')+'<h2 class="head reveal" data-d="1">Sheeting, eaves and floors</h2>'+
   '<div class="checklist">'+
     chk(2,'Fibro walls, eaves, cover strips, wet-area linings, Super Six roofs and fences — the products carpenters touch most.')+
     chk(2,'Screwing in fixings and small holes up to 25 mm: kit and SWMS controls.','info')+
-    chk(3,'Removing, replacing, cutting or breaking sheets: STOP and call — licensed company.','danger')+
+    chk(3,'Cutting, breaking or large holes in sheets: STOP and talk with your Service Manager — licensed company preferred for any removal.','danger')+
     chk(3,'Old sheet vinyl backing is friable — don’t lift or scrape it.','danger')+
   '</div>'+a.html,wire:a.wire,gate:a.gate};}),
  app:S('Appliances',function(){var a=scenarioActivity('rapp','Scenario','The 1970s wall oven',
    'You’re repairing an old wall oven. When you pull the side panel off, the insulation inside is grey, papery and crumbles when touched.',
    [{t:'Pull it out and replace it with new insulation.',ok:false,out:'Old oven, heater and hot water unit insulation can be friable asbestos. Hands off.'},
-    {t:'Stop. Don’t disturb it further, keep people away, close the panel if you can do it without breaking it more, and call your supervisor or Dean.',ok:true,out:'Right. Friable material is licensed-removalist only.'},
+    {t:'Stop. Don’t disturb it further, keep people away, close the panel if you can do it without breaking it more, and call your Service Manager.',ok:true,out:'Right. Friable material is licensed-removalist only.'},
     {t:'Vacuum the loose bits up with the workshop vac and carry on.',ok:false,out:'A normal vacuum spreads the fibres and contaminates the vac.'}]);
   return {html:''+kick('T','Appliances')+'<h2 class="head reveal" data-d="1">Old appliances and their insulation</h2>'+
   '<div class="checklist">'+
@@ -1027,7 +1030,7 @@ var ROLEPAGE={
  office:S('Warehouse & office',function(){var a=scenarioActivity('roff','Scenario','A bag comes back torn',
    'A tech drops off a bag at the office. It’s single bagged and the bag has a small tear.',
    [{t:'Put it straight in the asbestos bin — it’ll be fine.',ok:false,out:'Single bagged and torn isn’t acceptable — fibres can escape on the way.'},
-    {t:'Don’t open it or handle it more than you need to. Ask the tech to re-bag it with the kit (PPE on) — double bagged and duct taped — then it goes in the asbestos bin. Let Dean know.',ok:true,out:'Right. Double bagged and taped is the only way it goes in the bin.'},
+    {t:'Don’t open it or handle it more than you need to. Ask the tech to re-bag it with the kit (PPE on) — double bagged and duct taped — then it goes in the asbestos bin. Let their Service Manager know.',ok:true,out:'Right. Double bagged and taped is the only way it goes in the bin.'},
     {t:'Throw it in the general waste skip.',ok:false,out:'Never. Asbestos waste only goes in the designated asbestos bin.'}]);
   return {html:''+kick('T','Warehouse &amp; office')+'<h2 class="head reveal" data-d="1">Kits, bags and the bin</h2>'+
   '<div class="checklist">'+
@@ -1043,8 +1046,8 @@ var WRAP=S('Help & next steps',function(){return {html:''+
   kick('11','Help &amp; next steps')+
   '<h2 class="head reveal" data-d="1">You don’t have to work it out alone</h2>'+
   '<div class="grid g2">'+
-    '<div class="card reveal" data-d="2"><h3><span class="chip">'+I.users+'</span>Not sure? Ask.</h3><ul><li>Call your <b>Service Manager</b>, supervisor or Dean — we’ll talk you through it.</li><li>Need it confirmed? Use the <b>asbestos testing option in the price book</b> to add testing to your estimate.</li><li>Not comfortable taking a sample? Tell us and we’ll arrange another option.</li></ul></div>'+
-    '<div class="card blue reveal" data-d="3"><h3><span class="chip b">'+I.check+'</span>Every job, every time</h3><ul><li>Built before 1990? Assume asbestos.</li><li>Only screws and holes up to 25 mm — with the kit and the SWMS.</li><li>Keep it wet, catch the dust, leave the site clean.</li><li>Double bag, duct tape, office asbestos bin.</li></ul></div>'+
+    '<div class="card reveal" data-d="2"><h3><span class="chip">'+I.users+'</span>Not sure? Ask.</h3><ul><li>Talk with or call your <b>Service Manager</b> — they’ll talk you through it.</li><li>Need it confirmed? Use the <b>asbestos testing option in the price book</b> to add testing to your estimate.</li><li>Not comfortable taking a sample? Tell us and we’ll arrange another option.</li></ul></div>'+
+    '<div class="card blue reveal" data-d="3"><h3><span class="chip b">'+I.check+'</span>Every job, every time</h3><ul><li>Built before 1990? Assume asbestos.</li><li>Screws, holes up to 25 mm and whole pieces only — with the kit and the SWMS.</li><li>Keep it wet, catch the dust, leave the site clean.</li><li>Bag, tape, bag, tape — office asbestos bin.</li></ul></div>'+
   '</div>'+
   '<div class="shockline reveal" data-d="4"><div class="q">When in doubt — stop, leave it, and call.</div><div class="sub">Intact, undisturbed asbestos is far less dangerous than disturbed asbestos.</div></div>'};});
 
@@ -1054,15 +1057,15 @@ var WRAP=S('Help & next steps',function(){return {html:''+
 var Q_ALL=[
   {q:'A house was built in 1978. Before you drill into the wall sheeting you should…',o:['Assume it’s fine unless it looks damaged','Assume it contains asbestos unless a test says otherwise','Ask the customer if it’s asbestos','Only worry if it’s a commercial building'],a:1,why:'Built before 1990: <b>assume asbestos</b> — on a domestic job, treat it as asbestos or get a sample tested.'},
   {q:'Which of these is one of the “less obvious” places WorkSafe says asbestos hides?',o:['Window putty','New Colorbond roofing','Brick veneer','Poly rainwater tanks'],a:0,why:'Window putty, bathroom linings, electrical meter boxes and vinyl flooring.'},
-  {q:'Under Fallon’s rule, what can you do to suspected asbestos with an asbestos kit and following the SWMS?',o:['Remove up to 10 m² of sheeting','Screw into it and cut/drill holes up to 25 mm','Cut it with a grinder if you wet it first','Anything, as long as you wear a mask'],a:1,why:'<b>Screw into it or cut small holes — 25 mm max.</b> Anything more: STOP and call.'},
-  {q:'The job needs more than a screw or a 25 mm hole in asbestos. You…',o:['Do it carefully and clean up well','STOP and call your supervisor or Dean — we organise a licensed company','Get the customer to do it','Do it after hours when nobody is around'],a:1,why:'<b>STOP and call</b> before going any further.'},
+  {q:'With an asbestos kit and following the SWMS, which of these can you do?',o:['Cut a 90 mm downlight hole in a fibro ceiling','Screw into it, drill holes up to 25 mm, or remove a bonded piece whole without breaking it','Cut it with a grinder if you wet it first','Break a sheet up so it fits in the bag'],a:1,why:'<b>Screws, holes up to 25 mm, and whole pieces</b> — never large holes, never broken or cut.'},
+  {q:'The job needs a hole bigger than 25 mm in asbestos. You…',o:['Do it carefully and clean up well','STOP and talk with your Service Manager — we organise a licensed company','Get the customer to do it','Drill a ring of 25 mm holes'],a:1,why:'<b>STOP and talk with your Service Manager</b> before going any further.'},
   {q:'Which drill does our SWMS allow on asbestos?',o:['Any drill on hammer mode','A hand drill or low-speed battery drill','A high-speed drill so it’s quicker','A core drill'],a:1,why:'<b>Never</b> a high-speed drill — hand drill or low-speed battery drill only.'},
   {q:'Which material is friable — licensed removalist only?',o:['Flat fibro eave sheet in good condition','Pipe lagging and the backing on old sheet vinyl','Asbestos-cement downpipe','Vinyl floor tiles in good condition'],a:1,why:'Lagging, sprayed insulation, vinyl/lino backing and LDB are <b>friable</b>.'},
   {q:'How do you clean up asbestos dust after drilling?',o:['Sweep it up','Blow it away with compressed air','Wet-wipe with disposable rags and/or an asbestos (H-class) vacuum, then bag it','Use the customer’s vacuum'],a:2,why:'Wet methods and an asbestos-rated vacuum. <b>No sweeping, no compressed air.</b>'},
-  {q:'When can you take your respirator off?',o:['As soon as you stop drilling','When all waste is bagged, sealed and the clean-up is finished','When you get back to the van','Whenever it gets uncomfortable'],a:1,why:'Our SWMS: keep it on <b>until all waste is bagged, sealed and clean-up is completed</b>.'},
-  {q:'What happens to asbestos waste — including used PPE, rags and the drop sheet?',o:['Customer’s wheelie bin','Left on site in a bag for the customer','Double bagged, sealed with duct tape and brought to the asbestos bin at the office','Single bagged in the van'],a:2,why:'<b>Double bag, duct tape, office asbestos bin.</b> Never left on site.'},
+  {q:'How is asbestos waste — including used PPE, rags and the drop sheet — packed and disposed of?',o:['Customer’s wheelie bin','One bag, taped, left on site for the customer','First bag duct taped, into a second bag, second bag duct taped, then the asbestos bin at the office','Single bagged in the van'],a:2,why:'<b>Bag, tape, bag, tape</b> — then the office asbestos bin. Never left on site.'},
+  {q:'When does your respirator come off?',o:['As soon as you stop drilling','Last — after clean-up, once everything else is bagged; then it goes in the bag before you seal it','When you get back to the van','Whenever it gets uncomfortable'],a:1,why:'The respirator is <b>the last thing off</b>, and it goes in the bag too. Any dust should already be wetted down with the PVA glue and water mix.'},
   {q:'Which respirator do you wear for asbestos work with the kit?',o:['A paper dust mask','A P2 respirator that fits, fit-checked, clean-shaven where it seals','No mask if you keep it wet','Any mask with a valve'],a:1,why:'A <b>P2</b> respirator from the kit — and it only works with a proper seal.'},
-  {q:'Legally, anyone can remove up to 10 m² of bonded asbestos without a licence. At Fallon…',o:['We remove up to 10 m² ourselves','We only screw in or make holes up to 25 mm — any removal goes to an external licensed company','We remove up to 1 m²','Only apprentices remove it'],a:1,why:'<b>Drilling isn’t removing.</b> Fallon pays a licensed company for any removal or anything bigger than 25 mm.'},
+  {q:'Legally, up to 10 m² of bonded asbestos can be removed without a licence. At Fallon…',o:['Anything goes up to 10 m² — break it up if you need to','We can remove bonded pieces whole (e.g. an old switchboard), double bagged — but we prefer an outside company, so talk with your Service Manager first','We never touch asbestos at all','Only apprentices remove it'],a:1,why:'Whole pieces, double bagged, with the kit (and extra bags for anything bigger). We’d <b>prefer an outside company</b> — talk with your Service Manager.'},
   {q:'You accidentally crack a fibro sheet and a piece falls. First you…',o:['Hose it away','Stop, keep people away and don’t disturb it further','Sweep it up quickly','Finish the job, then deal with it'],a:1,why:'<b>Stop and control the area</b>, then clean up (wet, by hand, bag) or call if it’s more than a small amount — and report it.'},
   {q:'On a commercial site, before work starts you must…',o:['Ask the cleaner','Get a copy of the asbestos register','Nothing — commercial sites have no asbestos','Take a sample yourself'],a:1,why:'Non-domestic workplaces must have an <b>asbestos register</b> — check it before you start.'}
 ];
